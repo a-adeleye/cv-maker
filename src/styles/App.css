@@ -4,9 +4,63 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #f8f8f8;
+}
+
 .App {
-  margin: auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid red;
+}
+
+.preview {
+  min-width: 600px;
+  transform: scale(0.8);
+  overflow: scroll;
+}
+
+main {
   max-width: 800px;
+  border: 0.2em solid #2e2e2e;
+  padding: 2em;
+  border-radius: 1em;
+  margin-left: 5em;
+}
+
+.cv-form {
+  display: grid;
+}
+
+.general-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1em;
+  row-gap: 1.5em;
+}
+
+.general-details input {
+  display: block;
+}
+
+.general-details label {
+  font-size: 1.3em;
+}
+
+.general-details input {
+  font-size: 0.9em;
+  padding: 0.4em 1em;
+}
+
+.general-details--button {
+  background-color: #fbec5c;
+  font-size: large;
+  padding: 1em;
+  border: none;
+  border-radius: 0.2em;
+  cursor: pointer;
 }
 
 @media print {
