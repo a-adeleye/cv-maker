@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  margin: auto;
+  max-width: 800px;
+}
+
+@media print {
+  .App {
+    grid-template-columns: auto 1fr;
+    height: 100vh;
+  }
+}
