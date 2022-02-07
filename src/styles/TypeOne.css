@@ -13,6 +13,7 @@
 
 .right {
   padding: 2em 2em;
+  text-align: justify;
 }
 
 .contact-section {
@@ -103,7 +104,7 @@
 }
 
 .name {
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 .education-section,

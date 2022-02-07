@@ -3,25 +3,25 @@ import "../styles/TypeOne.css";
 
 // LEFT SECTION
 
-function Address() {
+function Address(props) {
   return (
     <section className="address-section">
       <div className="address--column">
         <i className="fas fa-map-marker-alt"></i>
       </div>
       <div className="address">
-        <p>Sports City, Dubai</p>
+        <p>{props.address}</p>
       </div>
     </section>
   );
 }
 
-function Name() {
+function Name(props) {
   return (
     <section className="name-section">
-      <h1 className="name">Smith Anderson</h1>
+      <h1 className="name">{props.name}</h1>
       <p className="title">
-        <span>&#9871;</span> UX/UI designer
+        <span>&#9871;</span> {props.title}
       </p>
     </section>
   );
@@ -91,17 +91,6 @@ function Certifications() {
   );
 }
 
-function Left() {
-  return (
-    <div className="left">
-      <Address />
-      <Name />
-      <Education />
-      <Skills />
-      <Certifications />
-    </div>
-  );
-}
 
 // RIGHT SECTION
 
@@ -126,15 +115,14 @@ function Contact() {
   );
 }
 
-function Profile() {
+function Profile(props) {
+  console.log(props)
   return (
     <section className="profile-section">
       <h2>PROFILE</h2>
       <hr></hr>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco
+        {props.profile}
       </p>
     </section>
   );
@@ -203,21 +191,28 @@ function Experience() {
   );
 }
 
-function Right() {
-  return (
-    <div className="right">
-      <Contact />
-      <Profile />
-      <Experience />
-    </div>
-  );
-}
 
-export default function TypeOne() {
+
+export default function TypeOne(props) {
+  const{address, name, title, profile} = props
+
+  console.log(props)
+
   return (
     <div className="container">
-      <Left />
-      <Right />
+      <div className="left">
+        <Address address = {address}/>
+        <Name name={name} title={title}/>
+        <Education />
+        <Skills />
+        <Certifications />
+      </div>
+
+      <div className="right">
+        <Contact />
+        <Profile profile={profile}/>
+        <Experience />
+      </div>
     </div>
   );
 }

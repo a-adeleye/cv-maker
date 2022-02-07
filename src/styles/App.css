@@ -13,17 +13,18 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid red;
 }
 
 .preview {
   min-width: 600px;
   transform: scale(0.8);
-  overflow: scroll;
+  overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 main {
   max-width: 800px;
+  min-width: 600px;
   border: 0.2em solid #2e2e2e;
   padding: 2em;
   border-radius: 1em;
@@ -41,26 +42,69 @@ main {
   row-gap: 1.5em;
 }
 
-.general-details input {
+.general-details input,
+.experience input {
   display: block;
 }
 
-.general-details label {
+label {
   font-size: 1.3em;
 }
 
-.general-details input {
+.general-details input,
+.profile textarea,
+.experience input {
   font-size: 0.9em;
   padding: 0.4em 1em;
 }
 
-.general-details--button {
+.general-details--button,
+.profile--button {
+  display: block;
   background-color: #fbec5c;
   font-size: large;
-  padding: 1em;
+  padding: 0.875em 0.93em;
   border: none;
-  border-radius: 0.2em;
   cursor: pointer;
+}
+
+.profile textarea {
+  margin-bottom: 1em;
+  font-family: inherit;
+  width: 28em;
+  height: 7em;
+}
+
+.profile--button {
+  width: 12.5em;
+}
+
+fieldset {
+  padding: 0 1em 1em;
+  margin-bottom: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+legend {
+  font-weight: 700;
+  font-size: larger;
+  margin: 0.7em;
+}
+
+.responsibility--button {
+  width: 18em;
+  height: 4em;
+  align-self: flex-end;
+  cursor: pointer;
+  background-color: #2e2e2e;
+  color: #ffffff;
+  border: none;
+}
+
+.experience--buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 @media print {
