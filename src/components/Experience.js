@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Experience() {
+export default function Experience() {
   const [experience, setExperience] = React.useState([
     {
       id: "experience 0",
@@ -161,24 +161,5 @@ export function Experience() {
         </button>
       </fieldset>
     </section>
-  );
-}
-
-function Responsibilities() {
-  return (
-    <div>
-      <input
-        type="text"
-        id="to"
-        name="to"
-        placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing"
-        value=""
-        onChange=""
-        required
-      ></input>
-      <button type="button" className="responsibility--button">
-        <i class="fas fa-plus"> Add responsibility</i>
-      </button>
-    </div>
   );
 }
