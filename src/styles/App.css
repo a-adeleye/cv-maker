@@ -179,13 +179,46 @@ textarea {
 
 .addInputButton {
   width: 90%;
-  height: 2em;
+  height: 3em;
+  background-color: #09203f;
+  color: #fbec5c;
 }
 
 .educationInputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1em;
+}
+
+.experienceInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+
+.responsibilities {
+  grid-column: 1 / span 2;
+  font-size: inherit;
+  color: #ebe6c1;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.responsibilityInputs label {
+  font-size: 0.8em;
+  display: block;
+  margin-top: 0.5em;
+}
+.responsibilityInputs input {
+  display: inline;
+  font-size: 0.8em;
+  margin-left: 1em;
+  width: 60%;
+}
+
+.responsibility-button {
+  margin-top: 0.7em;
+  height: 1.6em;
 }
 
 /* 

@@ -8,7 +8,7 @@ export default function Education(props) {
       course: "",
       yearFrom: "",
       yearTo: "",
-      cw: false,
+      cs: false,
     },
   ]);
 
@@ -52,17 +52,16 @@ export default function Education(props) {
           id={`school ${index}`}
           name="yearTo"
           type="date"
-          value={item.yearTo}
           onChange={handleChange}
         ></input>
       </label>
       <label>
-        I currently work here
+        I've not graduated
         <input
           id={`school ${index}`}
           name="yearTo"
           type="checkbox"
-          value={item.cw}
+          value={item.cs}
           onChange={handleChange}
         ></input>
       </label>
@@ -74,7 +73,7 @@ export default function Education(props) {
     setEducation((prevEdu) =>
       prevEdu.map((edu) =>
         edu.id === id
-          ? { ...edu, [name]: type === "checkbox" ? "till date" : value }
+          ? { ...edu, [name]: type === "checkbox" ? "yet to graduate" : value }
           : edu
       )
     );
@@ -93,7 +92,6 @@ export default function Education(props) {
     ]);
   }
 
-  console.log(education);
 
   return (
     <div className="education">
@@ -101,7 +99,7 @@ export default function Education(props) {
         <legend>EDUCATION</legend>
         {educationInputs}
         <button className="addInputButton" onClick={addEducation}>
-          Add another education
+        <i className="fas fa-plus"></i>  add another education
         </button>
       </fieldset>
     </div>
