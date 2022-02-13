@@ -1,33 +1,35 @@
 import { Link } from "react-router-dom";
-import typeOne from "./typeOne.jpg";
-import typeTwo from "./typeOne.jpg";
-import typeThree from "./typeOne.jpg";
+import typeOne from "./t1.jpg";
+import typeTwo from "./t2.jpg";
+import typeThree from "./t3.jpg";
 
 export default function Templates() {
+  const style = { color: "#ffffff", fontWeight: "bold", fontSize: "1.5em" };
   return (
     <section className="templates">
-    <p className="templates--title ">Choose a template</p>
+      <p className="templates--title ">Choose a template</p>
       <div className="templates-container">
-        <Link to="/">
+        <Link to="/" style={style}>
           <div className="template">
             <p className="template--title">Type One</p>
             <img src={typeOne} alt="" />
           </div>
         </Link>
-        <div className="template">
-          <Link to="/">
-            {" "}
+        <Link to="/" style={style}>
+          <div className="template">
             <p className="template--title">Type Two</p>
-          </Link>
-          <img src={typeTwo} alt="" />
-        </div>
-        <div className="template">
-          <Link to="/">
-            {" "}
+
+            <img src={typeTwo} alt="" />
+          </div>
+        </Link>
+        <Link to="/" style={style}>
+          {" "}
+          <div className="template">
             <p className="template--title">Type Three</p>
-          </Link>
-          <img src={typeThree} alt="" />
-        </div>
+
+            <img src={typeThree} alt="" />
+          </div>
+        </Link>
       </div>
     </section>
   );
