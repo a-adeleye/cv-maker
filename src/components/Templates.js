@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import typeOne from "./t1.jpg";
-import typeTwo from "./t2.jpg";
-import typeThree from "./t3.jpg";
+import typeOne from "../t1.jpg";
+import typeTwo from "../t2.jpg";
+import typeThree from "../t3.jpg";
 
 export default function Templates() {
   const style = { color: "#ffffff", fontWeight: "bold", fontSize: "1.5em" };
