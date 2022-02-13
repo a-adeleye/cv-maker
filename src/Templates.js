@@ -9,21 +9,19 @@ export default function Templates() {
     <section className="templates">
       <p className="templates--title ">Choose a template</p>
       <div className="templates-container">
-        <Link to="/" style={style}>
+        <Link to="/resumeform" style={style}>
           <div className="template">
             <p className="template--title">Type One</p>
             <img src={typeOne} alt="" />
           </div>
         </Link>
-        <Link to="/" style={style}>
+        <Link to="/resumeform" style={style}>
           <div className="template">
             <p className="template--title">Type Two</p>
-
             <img src={typeTwo} alt="" />
           </div>
         </Link>
-        <Link to="/" style={style}>
-          {" "}
+        <Link to="/resumeform" style={style}>
           <div className="template">
             <p className="template--title">Type Three</p>
 

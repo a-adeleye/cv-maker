@@ -9,13 +9,17 @@ html {
   background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
 }
 
-.landing-page {
-  position: relative;
+.landing-page,
+.resumeform,
+.templates {
   min-height: 100vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.landing-page {
+  width: 100%;
   justify-content: space-around;
   color: #ffffff;
   background-size: cover;
@@ -45,10 +49,6 @@ html {
 }
 
 .templates {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 2em;
   padding: 1em;
 }
@@ -87,41 +87,115 @@ html {
   margin-top: 1em;
 }
 
-.preview {
-  min-width: 600px;
-  transform: scale(0.8);
-  overflow-y: scroll;
-  scrollbar-width: thin;
+.resumeform {
+  justify-content: center;
 }
 
-main {
-  max-width: 800px;
-  min-width: 600px;
-  border: 0.2em solid #2e2e2e;
-  padding: 2em;
-  border-radius: 1em;
-  margin-left: 5em;
+.formNavigationButtons {
+  display: flex;
+  gap: 1em;
 }
 
-.cv-form {
+.general-details,
+.education {
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  padding: 0 1em 1em;
+  margin-bottom: 1em;
   display: grid;
+  gap: 1em;
+  max-width: 80%;
 }
 
-.general-details {
+.general-details fieldset {
+  grid-template-columns: 1fr 1fr;
+}
+
+legend {
+  font-weight: 700;
+  font-size: larger;
+  margin: 0.7em;
+  padding: 1em;
+  color: #ebe6c1;
+}
+
+label {
+  font-size: 1.3em;
+  color: #ebe6c1;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="date"] {
+  font-size: 0.9em;
+  padding: 0.4em 1em;
+  display: block;
+}
+
+input[type="date"] {
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  margin-left: 1em;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+button {
+  display: block;
+  width: 10em;
+  height: 3em;
+  justify-self: flex-end;
+  font-size: large;
+  border: none;
+  cursor: pointer;
+  margin-right: 1em;
+}
+
+.next {
+  background-color: #fbec5c;
+}
+
+.back {
+  background-color: #537895;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+textarea {
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  font-family: inherit;
+  width: 48em;
+  height: 10em;
+  padding: 0.4em 1em;
+}
+
+.addInputButton {
+  width: 90%;
+  height: 2em;
+}
+
+.educationInputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 1em;
-  row-gap: 1.5em;
+  gap: 1em;
 }
+
+/* 
 
 .general-details input,
 .experience input {
   display: block;
 }
 
-label {
-  font-size: 1.3em;
-}
+
 
 .general-details input,
 .profile textarea,
@@ -151,18 +225,7 @@ label {
   width: 12.5em;
 }
 
-fieldset {
-  padding: 0 1em 1em;
-  margin-bottom: 1em;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
 
-legend {
-  font-weight: 700;
-  font-size: larger;
-  margin: 0.7em;
-}
 
 .responsibility--button {
   width: 18em;
@@ -185,3 +248,5 @@ legend {
     height: 100vh;
   }
 }
+
+*/

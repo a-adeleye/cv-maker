@@ -3,6 +3,7 @@ import "./styles/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
 import Templates from "./Templates";
+import ResumeForm from "./ResumeForm";
 
 function App() {
   const [formData, setFormData] = React.useState({
@@ -42,6 +43,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />}></Route>
           <Route path="templates" element={<Templates />}></Route>
+          <Route path="resumeform" element={<ResumeForm />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
