@@ -4,10 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./components/Landing";
 import Templates from "./components/Templates";
 import ResumeForm from "./components/ResumeForm";
+import Preview from "./components/Preview";
 
 function App() {
-
-  const [typeOne, setTypeOne] = React.useState(true);
 
   return (
     <div className="App">
@@ -16,6 +15,7 @@ function App() {
           <Route path="/" element={<Landing />}></Route>
           <Route path="templates" element={<Templates />}></Route>
           <Route path="resumeform" element={<ResumeForm />}></Route>
+          <Route path="preview" element={<Preview />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

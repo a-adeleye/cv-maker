@@ -7,6 +7,8 @@ export default function Profile() {
       setProfile((prev) => (prev = e.target.value));
     }
   
+console.log(profile)
+
     return (
       <div className="profile">
         <fieldset>
@@ -15,6 +17,7 @@ export default function Profile() {
             name="profile"
             rows="9"
             cols="10"
+            value={profile}
             placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
             onChange={handleChange}
           ></textarea>

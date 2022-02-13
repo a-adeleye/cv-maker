@@ -1,7 +1,5 @@
 import React from "react";
 import "../styles/TypeOne.css";
-import { EditText, EditTextarea } from 'react-edit-text';
-import 'react-edit-text/dist/index.css';
 
 
 // LEFT SECTION
@@ -196,16 +194,14 @@ function Experience() {
 
 
 
-export default function TypeOne(props) {
-  const{address, name, title, profile} = props
-
-  console.log(props)
+export default function Preview(props) {
+  const{name, profile} = props
 
   return (
-    <div className="container">
+    <div className="preview">
       <div className="left">
-        <Address address = {address}/>
-        <Name name={name} title={title}/>
+        <Address address = "Sports city, Dubai"/>
+        <Name name={name} title="Fullstack developer"/>
         <Education />
         <Skills />
         <Certifications />

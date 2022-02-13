@@ -168,10 +168,10 @@ button:active {
 }
 
 textarea {
-  font-size: 0.9em;
+  font-size: 1.2em;
   margin-bottom: 1em;
   font-family: inherit;
-  width: 48em;
+  width: 28em;
   height: 10em;
   padding: 0.4em 1em;
 }
@@ -220,65 +220,28 @@ textarea {
   height: 1.6em;
 }
 
-/* 
-
-.general-details input,
-.experience input {
-  display: block;
+.skills-list {
+  margin-left: 1.4em;
+  color: #ebe6c1;
 }
 
-
-
-.general-details input,
-.profile textarea,
-.experience input {
-  font-size: 0.9em;
-  padding: 0.4em 1em;
-}
-
-.general-details--button,
-.profile--button {
-  display: block;
-  background-color: #fbec5c;
-  font-size: large;
-  padding: 0.875em 0.93em;
-  border: none;
+.skills-list span {
+  margin-left: 1em;
   cursor: pointer;
 }
 
-.profile textarea {
-  margin-bottom: 1em;
-  font-family: inherit;
-  width: 28em;
-  height: 7em;
-}
-
-.profile--button {
-  width: 12.5em;
-}
-
-
-
-.responsibility--button {
-  width: 18em;
-  height: 4em;
-  align-self: flex-end;
-  cursor: pointer;
-  background-color: #2e2e2e;
-  color: #ffffff;
-  border: none;
-}
-
-.experience--buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.preview {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
 
 @media print {
-  .App {
+  .preview {
     grid-template-columns: auto 1fr;
-    height: 100vh;
+    height: 80vh;
+    margin: none;
   }
 }
-
-*/

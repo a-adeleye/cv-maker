@@ -27,7 +27,7 @@ export default function Experience() {
   }
 
   function handleResponsibility(e) {
-    const { id, name, value, type } = e.target;
+    const { id, name, value} = e.target;
 
     function update(arr, name, value) {
       let newArray = [...arr.responsibilities];

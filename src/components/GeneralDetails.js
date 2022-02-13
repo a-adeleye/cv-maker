@@ -20,6 +20,8 @@ export default function GeneralDetails() {
         };
       });
     }
+
+    console.log(formData)
   
     return (
       <div className="general-details">

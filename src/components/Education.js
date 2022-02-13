@@ -12,6 +12,8 @@ export default function Education(props) {
     },
   ]);
 
+  console.log(education)
+
   const educationInputs = education.map((item, index) => (
     <div key={index} className="educationInputs">
       <label>

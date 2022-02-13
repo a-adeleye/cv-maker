@@ -15,7 +15,7 @@ function FormNavigation(props) {
           NEXT
         </button>
       )}
-      <Link to="preview" style={{textDecoration: "none"}}>
+      <Link to="/preview" style={{textDecoration: "none"}}>
         {props.formElement === 5 && (
           <button onClick={props.next} className="next">
             PREVIEW
