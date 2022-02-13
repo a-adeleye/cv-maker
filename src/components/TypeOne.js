@@ -1,5 +1,8 @@
 import React from "react";
 import "../styles/TypeOne.css";
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+
 
 // LEFT SECTION
 

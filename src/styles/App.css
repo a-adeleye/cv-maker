@@ -5,14 +5,86 @@
 }
 
 html {
-  background-color: #f8f8f8;
+  background-color: #537895;
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
 }
 
-.App {
-  height: 100vh;
+.landing-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  background-size: cover;
+  padding: 5em;
+}
+
+.landing-page--title {
+  font-size: 3em;
+}
+
+.landing-page--button {
+  font-size: 1.5em;
+  padding: 1em;
+  border: none;
+  cursor: pointer;
+  background-color: #fbec5c;
+}
+
+.landing-page--text {
+  font-size: 2em;
+  text-align: center;
+  color: #ebe6c1;
+}
+
+.landing-page--button:active {
+  transform: scale(0.97);
+}
+
+.templates {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+}
+
+.templates--title {
+  font-size: 1.5em;
+  color: #ebe6c1;
+}
+
+.templates-container {
+  width: 100%;
+  padding: 2em;
+  display: flex;
+  gap: 1em;
   align-items: center;
   justify-content: center;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+}
+
+.templates-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.template {
+  flex-basis: 33%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.template img {
+  height: 80%;
+  margin-top: 1em;
 }
 
 .preview {

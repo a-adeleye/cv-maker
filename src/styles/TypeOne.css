@@ -73,6 +73,7 @@
 
 .address-section {
   display: flex;
+  align-items: flex-end;
 }
 
 .address--column {
@@ -88,6 +89,22 @@
   position: absolute;
   inset: auto 0 1em 0;
 }
+
+div._1EEDX_ygkSb {
+  height: 20px;
+}
+
+/* textarea._1EEDX {
+  height: 20px;
+} */
+
+/* ._1EEDX {
+  height: 20px;
+}
+
+._ygkSb {
+  
+} */
 
 .address {
   align-self: flex-end;

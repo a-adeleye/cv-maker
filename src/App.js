@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles/App.css";
-import TypeOne from "./components/TypeOne";
-import {GeneralDetails, Profile, Experience} from "./components/CVForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./Landing";
+import Templates from "./Templates";
 
 function App() {
   const [formData, setFormData] = React.useState({
@@ -11,7 +12,8 @@ function App() {
     phone: "0123456789",
     address: "Roosvelt Street, Addis Ababa",
     website: "www.example.com",
-    profile: "Adex Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+    profile:
+      "Adex Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
   });
 
   const [typeOne, setTypeOne] = React.useState(true);
@@ -32,27 +34,16 @@ function App() {
     e.preventdefault();
   }
 
-const {name, title, email, phone, address, website, profile} = formData;
+  const { name, title, email, phone, address, website, profile } = formData;
 
   return (
     <div className="App">
-
-      <main>
-        <form className="cv-form">
-          {!typeOne && <GeneralDetails
-            name={name}
-            title={title}
-            email={email}
-            phone={phone}
-            address={address}
-            website={website}
-            handleChange={handleChange}
-          />}
-          {!typeOne && <Profile profile={profile} handleChange={handleChange}/>}
-          <Experience />
-        </form>
-      </main>
-      <div className="preview">{typeOne && <TypeOne address={address} name={name} title={title} profile={profile}/>}</div>
+      <BrowserRouter basename="/">
+        <Routes>
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="templates" element={<Templates />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
