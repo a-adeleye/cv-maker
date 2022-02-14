@@ -1,9 +1,10 @@
 import React from "react";
+import { nanoid } from "nanoid";
 
 export default function Education(props) {
   const [education, setEducation] = React.useState([
     {
-      id: "school 0",
+      id: nanoid(),
       school: "",
       course: "",
       yearFrom: "",
@@ -12,14 +13,19 @@ export default function Education(props) {
     },
   ]);
 
-  console.log(education)
+  function deleteEducation(e) {
+    setEducation((prevEdu) => 
+    prevEdu.filter((edu) => edu.id !== e.target.id));
+  }
+
+  console.log(education);
 
   const educationInputs = education.map((item, index) => (
     <div key={index} className="educationInputs">
       <label>
         Institution
         <input
-          id={`school ${index}`}
+          id={item.id}
           name="school"
           type="text"
           value={item.school}
@@ -30,7 +36,7 @@ export default function Education(props) {
       <label>
         Course
         <input
-          id={`school ${index}`}
+          id={item.id}
           name="course"
           type="text"
           value={item.course}
@@ -42,7 +48,7 @@ export default function Education(props) {
       <label>
         From
         <input
-          id={`school ${index}`}
+          id={item.id}
           name="yearFrom"
           type="date"
           onChange={handleChange}
@@ -51,16 +57,19 @@ export default function Education(props) {
       <label>
         To
         <input
-          id={`school ${index}`}
+          id={item.id}
           name="yearTo"
           type="date"
           onChange={handleChange}
         ></input>
+        <span id={item.id} onClick={deleteEducation}>
+          <i className="fas fa-minus"></i> delete education
+        </span>
       </label>
       <label>
         I've not graduated
         <input
-          id={`school ${index}`}
+          id={item.id}
           name="yearTo"
           type="checkbox"
           value={item.cs}
@@ -85,7 +94,7 @@ export default function Education(props) {
     setEducation((prevEdu) => [
       ...prevEdu,
       {
-        id: `school ${education.length}`,
+        id: nanoid(),
         school: "",
         course: "",
         yearFrom: "",
@@ -94,14 +103,13 @@ export default function Education(props) {
     ]);
   }
 
-
   return (
     <div className="education">
       <fieldset>
         <legend>EDUCATION</legend>
         {educationInputs}
         <button className="addInputButton" onClick={addEducation}>
-        <i className="fas fa-plus"></i>  add another education
+          <i className="fas fa-plus"></i> add another education
         </button>
       </fieldset>
     </div>

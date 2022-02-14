@@ -18,9 +18,8 @@ export default function Skills() {
   }
 
   function deleteSkill(e) {
-    console.log(typeof(skills[0].id));
     setSkills((prevSkill) =>
-      prevSkill.filter((skill) => skill.id != e.target.id)
+      prevSkill.filter((skill) => skill.id !== e.target.id)
     );
   }
 

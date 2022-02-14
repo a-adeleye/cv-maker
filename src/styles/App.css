@@ -191,6 +191,20 @@ textarea {
   gap: 1em;
 }
 
+.educationInputs span {
+  display: block;
+  margin-top: 1em;
+  margin-right: 0.3em;
+  cursor: pointer;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.educationInputs span:active,
+.skill-list span:active {
+  transform: scale(0.97);
+}
+
 .experienceInputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -274,7 +288,6 @@ textarea {
     justify-content: center;
     border: 1px solid red;
   }
-
   .preview {
     transform: scale(0.6);
   }
