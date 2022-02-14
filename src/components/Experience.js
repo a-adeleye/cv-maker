@@ -1,9 +1,10 @@
 import React from "react";
+import { nanoid } from "nanoid";
 
 export default function Experience() {
   const [experience, setExperience] = React.useState([
     {
-      id: "experience 0",
+      id: nanoid(),
       role: "",
       company: "",
       yearFrom: "",
@@ -27,7 +28,7 @@ export default function Experience() {
   }
 
   function handleResponsibility(e) {
-    const { id, name, value} = e.target;
+    const { id, name, value } = e.target;
 
     function update(arr, name, value) {
       let newArray = [...arr.responsibilities];
@@ -48,7 +49,7 @@ export default function Experience() {
     setExperience((prevEx) => [
       ...prevEx,
       {
-        id: `experience ${experience.length}`,
+        id: nanoid(),
         role: "",
         company: "",
         yearFrom: "",
@@ -70,12 +71,17 @@ export default function Experience() {
     );
   }
 
-  const experienceInputs = experience.map((item, index) => (
-    <div key={index} className="experienceInputs">
+  function deleteExperience(e) {
+    setExperience((prevExp) => 
+    prevExp.filter((exp) => exp.id !== e.target.id));
+  }
+
+  const experienceInputs = experience.map((item) => (
+    <div key={item.id} className="experienceInputs">
       <label>
         Role
         <input
-          id={`experience ${index}`}
+          id={item.id}
           name="role"
           type="text"
           value={item.role}
@@ -86,7 +92,7 @@ export default function Experience() {
       <label>
         Company
         <input
-          id={`experience ${index}`}
+          id={item.id}
           name="company"
           type="text"
           value={item.company}
@@ -98,7 +104,7 @@ export default function Experience() {
       <label>
         From
         <input
-          id={`experience ${index}`}
+          id={item.id}
           name="yearFrom"
           type="date"
           onChange={handleChange}
@@ -107,7 +113,7 @@ export default function Experience() {
       <label>
         To
         <input
-          id={`experience ${index}`}
+          id={item.id}
           name="yearTo"
           type="date"
           onChange={handleChange}
@@ -116,7 +122,7 @@ export default function Experience() {
       <label>
         I presently work here
         <input
-          id={`experience ${index}`}
+          id={item.id}
           name="yearTo"
           type="checkbox"
           value={item.cw}
@@ -124,30 +130,9 @@ export default function Experience() {
         ></input>
       </label>
 
-      <div className="responsibilities">
-        <h4>RESPONSIBILITIES</h4>
-        <div className="responsibilityInputs">
-          {item.responsibilities.map((x, index) => (
-            <label key={index}>
-              Responsibility
-              <input
-                type="text"
-                value={x.value}
-                id={`experience ${experience.length - 1}`}
-                name={index}
-                onChange={handleResponsibility}
-              ></input>
-            </label>
-          ))}
-          <button
-            id={`experience ${experience.length - 1}`}
-            className="responsibility-button"
-            onClick={addResponsibility}
-          >
-            <i className="fas fa-plus"></i> add responsibility
-          </button>
-        </div>
-      </div>
+      <span id={item.id} onClick={deleteExperience}>
+        <i className="fas fa-minus"></i> delete experience
+      </span>
     </div>
   ));
 

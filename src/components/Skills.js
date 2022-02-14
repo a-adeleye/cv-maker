@@ -25,22 +25,7 @@ export default function Skills() {
 
   console.log(skills);
 
-  const skillInputs = skills.map((item, index) => (
-    <label key={index}>
-      Skill
-      <input
-        id={`skill ${skills.length}`}
-        type="text"
-        value={tempSkills.text}
-        onChange={handleChange}
-      ></input>
-      <span id={`skill ${skills.length - 1}`} onClick={deleteSkill}>
-        <i className="fas fa-minus"></i> delete{" "}
-      </span>
-    </label>
-  ));
-
-  const skillList = skills.map((skill, index) => (
+  const skillList = skills.map((skill,) => (
     <li key={skill.id} id={skill.id}>
       {skill.text}
       <span id={skill.id} onClick={deleteSkill}>

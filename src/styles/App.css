@@ -154,7 +154,6 @@ button {
   font-size: large;
   border: none;
   cursor: pointer;
-  /* margin-right: 1em; */
 }
 
 .next {
@@ -191,17 +190,20 @@ textarea {
   gap: 1em;
 }
 
-.educationInputs span {
+.educationInputs span,
+.experienceInputs span {
   display: block;
   margin-top: 1em;
   margin-right: 0.3em;
   cursor: pointer;
   font-size: 0.8em;
   text-align: right;
+  color: #fbec5c;
 }
 
 .educationInputs span:active,
-.skill-list span:active {
+.skill-list span:active,
+.experienceInputs span:active {
   transform: scale(0.97);
 }
 
