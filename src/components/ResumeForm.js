@@ -5,6 +5,8 @@ import Education from "./Education";
 import Experience from "./Experience";
 import Skills from "./Skills";
 import { Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Preview from "./Preview";
 
 function FormNavigation(props) {
   return (
@@ -39,16 +41,17 @@ export default function ResumeForm() {
 
   return (
     <section className="resumeform">
-      {formElement === 1 && <GeneralDetails />}
-      {formElement === 2 && <Profile />}
-      {formElement === 3 && <Education />}
-      {formElement === 4 && <Experience />}
-      {formElement === 5 && <Skills />}
-      <FormNavigation
-        formElement={formElement}
-        back={back}
-        next={next}
-      ></FormNavigation>
+      <h1>Here</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/generaldetails" element={<GeneralDetails />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/education" element={<Education />}></Route>
+          <Route path="/experiences" element={<Experience />}></Route>
+          <Route path="/skills" element={<Skills />}></Route>
+          <Route path="/preview" element={<Preview />}></Route>
+        </Routes>
+      </BrowserRouter>
     </section>
   );
 }

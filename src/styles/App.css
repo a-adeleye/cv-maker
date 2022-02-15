@@ -10,6 +10,26 @@ html {
   background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
 }
 
+header {
+  height: 4em;
+  background-color: #09203f;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1em;
+}
+
+.link {
+  text-decoration: none;
+  color: #ebe6c1;
+}
+
+.active {
+  font-weight: bold;
+  color: #fbec5c;
+  text-decoration: none;
+}
+
 .landing-page,
 .resumeform,
 .templates {
@@ -51,13 +71,19 @@ html {
 }
 
 .templates {
-  gap: 2em;
   padding: 1em;
 }
 
 .templates--title {
   font-size: 1.5em;
   color: #ebe6c1;
+}
+
+.templates-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 .templates-container {
@@ -221,12 +247,12 @@ textarea {
   text-align: center;
 }
 
-.responsibilityInputs label {
+.responsibilities label {
   font-size: 0.8em;
   display: block;
   margin-top: 0.5em;
 }
-.responsibilityInputs input {
+.responsibilities input {
   display: inline;
   font-size: 0.8em;
   margin-left: 1em;
@@ -236,6 +262,8 @@ textarea {
 .responsibility-button {
   margin-top: 0.7em;
   height: 1.6em;
+  margin-left: auto;
+  font-size: 0.7em;
 }
 
 .skills-list {
@@ -247,6 +275,11 @@ textarea {
   margin-left: 1em;
   cursor: pointer;
   font-size: 0.8em;
+}
+
+.experience-list {
+  margin-left: 1.4em;
+  color: #ebe6c1;
 }
 
 .preview {

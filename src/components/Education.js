@@ -1,7 +1,7 @@
 import React from "react";
 import { nanoid } from "nanoid";
 
-export default function Education(props) {
+export default function Education() {
   const [education, setEducation] = React.useState([
     {
       id: nanoid(),
