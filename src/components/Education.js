@@ -1,4 +1,5 @@
 import React from "react";
+import FormNavigation from "./FormNavigation";
 import { nanoid } from "nanoid";
 
 export default function Education() {
@@ -112,6 +113,7 @@ export default function Education() {
           <i className="fas fa-plus"></i> add another education
         </button>
       </fieldset>
+      <FormNavigation back="/resumeform/profile" next="/resumeform/experience" text="NEXT"/>
     </div>
   );
 }

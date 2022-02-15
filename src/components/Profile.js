@@ -1,4 +1,5 @@
 import React from "react";
+import FormNavigation from "./FormNavigation";
 
 export default function Profile() {
     const [profile, setProfile] = React.useState("");
@@ -6,9 +7,7 @@ export default function Profile() {
     function handleChange(e) {
       setProfile((prev) => (prev = e.target.value));
     }
-  
-console.log(profile)
-
+ 
     return (
       <div className="profile">
         <fieldset>
@@ -22,6 +21,7 @@ console.log(profile)
             onChange={handleChange}
           ></textarea>
         </fieldset>
+        <FormNavigation back="/resumeform/generaldetails" next="/resumeform/education" text="NEXT"/>
       </div>
     );
   }

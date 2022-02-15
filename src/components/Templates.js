@@ -17,19 +17,19 @@ export default function Templates() {
     <section className="templates">
       <p className="templates--title ">Choose a template</p>
       <div className="templates-container">
-        <NavLink to="/generaldetails" className='templates-link' name="typeOne" onClick={setActive} style = {selectedTemplate === "typeOne" ? activeStyle: null}>
+        <NavLink to="/resumeform/generaldetails" className='templates-link' name="typeOne" onClick={setActive} style = {selectedTemplate === "typeOne" ? activeStyle: null}>
           <div className="template">
             <p className="template--title">Type One</p>
             <img src={typeOne} alt="" />
           </div>
         </NavLink>
-        <NavLink to="/generaldetails" className='templates-link' name="typeTwo" onClick={setActive} style = {selectedTemplate === "typeTwo" ? activeStyle: null}>
+        <NavLink to="/resumeform/generaldetails" className='templates-link' name="typeTwo" onClick={setActive} style = {selectedTemplate === "typeTwo" ? activeStyle: null}>
           <div className="template">
             <p className="template--title">Type Two</p>
             <img src={typeTwo} alt="" />
           </div>
         </NavLink>
-        <NavLink to="/generaldetails" className='templates-link' name="typeThree" onClick={setActive} style = {selectedTemplate === "typeThree" ? activeStyle: null}>
+        <NavLink to="/resumeform/generaldetails" className='templates-link' name="typeThree" onClick={setActive} style = {selectedTemplate === "typeThree" ? activeStyle: null}>
           <div className="template">
             <p className="template--title">Type Three</p>
 

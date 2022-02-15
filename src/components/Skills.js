@@ -1,4 +1,5 @@
 import React from "react";
+import FormNavigation from "./FormNavigation";
 import { nanoid } from "nanoid";
 
 export default function Skills() {
@@ -53,6 +54,7 @@ export default function Skills() {
           <i className="fas fa-plus"></i> add skill
         </button>
       </fieldset>
+      <FormNavigation back="/resumeform/experience" next="/resumeform/preview" text="PREVIEW"/>
     </section>
   );
 }

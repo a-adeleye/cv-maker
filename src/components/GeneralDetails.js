@@ -100,7 +100,7 @@ export default function GeneralDetails() {
             ></input>
           </label>
         </fieldset>
-        <FormNavigation back="/templates" next="/profile" text="NEXT"/>
+        <FormNavigation back="/templates" next="/resumeform/profile" text="NEXT"/>
       </div>
     );
   }
