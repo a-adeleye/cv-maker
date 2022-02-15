@@ -67,7 +67,9 @@ header {
 .templates,
 .general-details,
 .profile,
-.education {
+.education,
+.experience,
+.skills {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -155,7 +157,6 @@ fieldset {
   display: grid;
   gap: 1em;
   max-width: 60%;
-  /* min-width: 35em; */
   border: 0.2em solid #09203f;
 }
 
@@ -192,6 +193,7 @@ label {
 
 ::placeholder {
   color: #5378958c;
+  font-size: 0.85em;
 }
 
 input[type="text"],
@@ -229,16 +231,18 @@ textarea {
   font-size: 1.2em;
   margin-bottom: 1em;
   font-family: inherit;
-  width: 28em;
+  max-width: 25em;
+  min-width: 18em;
   height: 10em;
   padding: 0.4em 1em;
 }
 
 .addInputButton {
-  width: 90%;
-  height: 3em;
+  width: 100%;
+  height: 2em;
   background-color: #09203f;
   color: #fbec5c;
+  font-size: 1em;
 }
 
 .educationInputs {
@@ -255,7 +259,7 @@ textarea {
   cursor: pointer;
   font-size: 0.8em;
   text-align: right;
-  color: #fbec5c;
+  color: #537895;
 }
 
 .educationInputs span:active,
@@ -295,6 +299,7 @@ textarea {
   height: 1.6em;
   margin-left: auto;
   font-size: 0.7em;
+  width: 100%;
 }
 
 .skills-list {
@@ -345,7 +350,7 @@ textarea {
   }
 
   textarea {
-    width: 18em;
+    min-width: 10em;
     height: 18em;
   }
 

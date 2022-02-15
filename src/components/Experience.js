@@ -132,7 +132,7 @@ export default function Experience() {
         ></input>
       </label>
       <label>
-        I presently work here
+        I currently work here
         <input
           id={item.id}
           name="yearTo"
