@@ -1,4 +1,5 @@
 import React from "react";
+import FormNavigation from "./FormNavigation";
 
 export default function GeneralDetails() {
     const [formData, setFormData] = React.useState({
@@ -99,6 +100,7 @@ export default function GeneralDetails() {
             ></input>
           </label>
         </fieldset>
+        <FormNavigation back="/templates" next="/profile" text="NEXT"/>
       </div>
     );
   }
