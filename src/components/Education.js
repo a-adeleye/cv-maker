@@ -2,6 +2,43 @@ import React from "react";
 import FormNavigation from "./FormNavigation";
 import { nanoid } from "nanoid";
 
+
+function EducationInputs(props) {
+
+  const {handleChange, formData, addEducation} = props;
+
+    return (<fieldset className="educationInputs">
+        <legend>EDUCATION</legend>
+
+        <label>
+          Institution
+          <input name="institution" type="text" value={formData.institution} onChange={handleChange} placeholder="Havard"></input>
+        </label>
+        <label>
+          Course
+          <input name="course" type="text" value={formData.course} onChange={handleChange} placeholder="Computer Engineering"></input>
+        </label>
+
+        <label>
+          From
+          <input name="yearFrom" type="date" value={formData.yearFrom} onChange={handleChange}></input>
+        </label>
+        <label>
+          To
+          <input name="yearTo" type="date" value={formData.yearTo} onChange={handleChange}></input>
+        </label>
+        <label>
+          I've not graduated
+          <input name="yearTo" type="checkbox" value={formData.cs} onChange={handleChange}></input>
+        </label>
+
+        <button className="addInputButton" onClick={addEducation}>
+          <i className="fas fa-plus"></i> add another education
+        </button>
+      </fieldset>);
+}
+
+
 export default function Education() {
   const [education, setEducation] = React.useState([]);
 
@@ -44,52 +81,7 @@ export default function Education() {
 
   return (
     <div className="education">
-      <fieldset className="educationInputs">
-        <legend>EDUCATION</legend>
-
-        <label>
-          Institution
-          <input
-            name="institution"
-            type="text"
-            value={formData.institution}
-            onChange={handleChange}
-            placeholder="Havard"
-          ></input>
-        </label>
-        <label>
-          Course
-          <input
-            name="course"
-            type="text"
-            value={formData.course}
-            onChange={handleChange}
-            placeholder="Computer Engineering"
-          ></input>
-        </label>
-
-        <label>
-          From
-          <input name="yearFrom" type="date" value={formData.yearFrom} onChange={handleChange}></input>
-        </label>
-        <label>
-          To
-          <input name="yearTo" type="date" value={formData.yearTo} onChange={handleChange}></input>
-        </label>
-        <label>
-          I've not graduated
-          <input
-            name="yearTo"
-            type="checkbox"
-            value={formData.cs}
-            onChange={handleChange}
-          ></input>
-        </label>
-
-        <button className="addInputButton" onClick={addEducation}>
-          <i className="fas fa-plus"></i> add another education
-        </button>
-      </fieldset>
+      <EducationInputs formData={formData} handleChange={handleChange} addEducation={addEducation}></EducationInputs>
       <FormNavigation
         back="/resumeform/profile"
         next="/resumeform/experience"
