@@ -1,42 +1,57 @@
-import { NavLink } from "react-router-dom"
+import React from "react";
 import typeOne from "../t1.jpg";
 import typeTwo from "../t2.jpg";
 import typeThree from "../t3.jpg";
+import FormNavigation from "./FormNavigation";
 
 export default function Templates() {
-
-  let selectedTemplate = "typeOne";
+  const [template, setTemplate] = React.useState("typeOne");
 
   function setActive(e) {
-    selectedTemplate = e.target.name;
+    const {id, name} = e.target;
+    setTemplate((prevTemplate) => (prevTemplate = id || name));
   }
 
-  const activeStyle = { color: "#fbec5c"};
+  const activeStyle = { color: "#fbec5c", fontWeight: "bold" };
 
   return (
     <section className="templates">
       <p className="templates--title ">Choose a template</p>
       <div className="templates-container">
-        <NavLink to="/resumeform/generaldetails" className='templates-link' name="typeOne" onClick={setActive} style = {selectedTemplate === "typeOne" ? activeStyle: null}>
-          <div className="template">
-            <p className="template--title">Type One</p>
-            <img src={typeOne} alt="" />
-          </div>
-        </NavLink>
-        <NavLink to="/resumeform/generaldetails" className='templates-link' name="typeTwo" onClick={setActive} style = {selectedTemplate === "typeTwo" ? activeStyle: null}>
-          <div className="template">
-            <p className="template--title">Type Two</p>
-            <img src={typeTwo} alt="" />
-          </div>
-        </NavLink>
-        <NavLink to="/resumeform/generaldetails" className='templates-link' name="typeThree" onClick={setActive} style = {selectedTemplate === "typeThree" ? activeStyle: null}>
-          <div className="template">
-            <p className="template--title">Type Three</p>
+        <div
+          className="template"
+          onClick={setActive}
+          style={template === "typeOne" ? activeStyle : null}
+        >
+          <p className={template === "typeOne" ? "active" : "template--title"} id="typeOne">
+            Type One
+          </p>
+          <img name="typeOne" src={typeOne} alt="" />
+        </div>
 
-            <img src={typeThree} alt="" />
-          </div>
-        </NavLink>
+        <div
+          className="template"
+          onClick={setActive}
+          style={template === "typeTwo" ? activeStyle : null}
+        >
+          <p id="typeTwo" className={template === "typeTwo" ? "active" : "template--title"}>
+            Type Two
+          </p>
+          <img name="typeTwo" src={typeTwo} alt="" />
+        </div>
+
+        <div
+          className="template"
+          onClick={setActive}
+          style={template === "typeThree" ? activeStyle : null}
+        >
+          <p id="typeThree" className={template === "typeThree" ? "active" : "template--title"}>
+            Type Three
+          </p>
+          <img name="typeThree" src={typeThree} alt="" />
+        </div>
       </div>
+      <FormNavigation back="/" next="/resumeform/generaldetails" text="NEXT" />
     </section>
   );
 }
