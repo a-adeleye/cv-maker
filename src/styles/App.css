@@ -25,8 +25,8 @@ main,
   justify-content: center;
   align-content: center;
   gap: 2em;
-  text-align: center;
   position: relative;
+  text-transform: uppercase;
 }
 
 .sidebar::before {
@@ -156,7 +156,8 @@ fieldset {
   margin-bottom: 1em;
   display: grid;
   gap: 1em;
-  max-width: 60%;
+  width: 35em;
+  min-height: 22em;
   border: 0.2em solid #09203f;
 }
 
@@ -174,8 +175,13 @@ fieldset {
   background-color: #537895;
 }
 
-.general-details fieldset {
+.general-details fieldset,
+.skills fieldset {
   grid-template-columns: 1fr 1fr;
+}
+
+.skills .addInputButton {
+  grid-column: 1 / span 2;
 }
 
 legend {
@@ -262,8 +268,16 @@ textarea {
   color: #537895;
 }
 
+.skills-list li {
+  color: #09203f;
+}
+
+.skills-list span {
+  color: #b1b1b1;
+}
+
 .educationInputs span:active,
-.skill-list span:active,
+.skills-list span:active,
 .experienceInputs span:active {
   transform: scale(0.97);
 }

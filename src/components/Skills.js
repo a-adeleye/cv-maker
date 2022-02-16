@@ -15,7 +15,10 @@ export default function Skills() {
   }
 
   function addSkill() {
-    setSkills((prevSkill) => [...prevSkill, tempSkills]);
+    if (tempSkills.text !== "") {
+      setSkills((prevSkill) => [...prevSkill, tempSkills]);
+      reset();
+    }
   }
 
   function deleteSkill(e) {
@@ -24,9 +27,13 @@ export default function Skills() {
     );
   }
 
-  console.log(skills);
+  function reset() {
+    setTempSkills((prevSkill) => {
+      return { id: nanoid(), text: "" };
+    });
+  }
 
-  const skillList = skills.map((skill,) => (
+  const skillList = skills.map((skill) => (
     <li key={skill.id} id={skill.id}>
       {skill.text}
       <span id={skill.id} onClick={deleteSkill}>
@@ -47,14 +54,21 @@ export default function Skills() {
             onChange={handleChange}
           ></input>
         </label>
-        <ul className="skills-list">{skillList}</ul>
+        <ul className="skills-list">
+          {skills.length !== 0 && <label>Added skills</label>}
+          {skillList}
+        </ul>
         <span></span>
 
         <button className="addInputButton" onClick={() => addSkill()}>
           <i className="fas fa-plus"></i> add skill
         </button>
       </fieldset>
-      <FormNavigation back="/resumeform/experience" next="/resumeform/preview" text="PREVIEW"/>
+      <FormNavigation
+        back="/resumeform/experience"
+        next="/resumeform/preview"
+        text="PREVIEW"
+      />
     </section>
   );
 }
