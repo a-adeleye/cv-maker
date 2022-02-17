@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/TypeOne.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTemplate, selectProfile } from "../resumeSlice";
+import { selectTemplate, selectProfile, selectEducation, selectSkills } from "../resumeSlice";
 
 
 // LEFT SECTION
@@ -200,9 +200,13 @@ export default function Preview(props) {
 
 const templateName = useSelector(selectTemplate);
 const profile = useSelector(selectProfile);
+const education = useSelector(selectEducation);
+const skills = useSelector(selectSkills);
 
 console.log(templateName)
 console.log(profile)
+console.log(skills)
+console.log(education)
 
   return (
     <div className="preview">

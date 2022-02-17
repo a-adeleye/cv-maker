@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import FormNavigation from "./FormNavigation";
 import { nanoid } from "nanoid";
+import { addSkills, selectSkills, deleteSkills } from "../resumeSlice";
 
 export default function Skills() {
-  const [skills, setSkills] = React.useState([]);
+  const skills = useSelector(selectSkills);
+  const dispatch = useDispatch();
 
   const [tempSkills, setTempSkills] = React.useState({ id: "", text: "" });
 
@@ -16,15 +19,14 @@ export default function Skills() {
 
   function addSkill() {
     if (tempSkills.text !== "") {
-      setSkills((prevSkill) => [...prevSkill, tempSkills]);
+      //setSkills((prevSkill) => [...prevSkill, tempSkills]);
+      dispatch(addSkills(tempSkills));
       reset();
     }
   }
 
   function deleteSkill(e) {
-    setSkills((prevSkill) =>
-      prevSkill.filter((skill) => skill.id !== e.target.id)
-    );
+    dispatch(deleteSkills(e.target.id))
   }
 
   function reset() {

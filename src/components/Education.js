@@ -1,7 +1,8 @@
 import React from "react";
-import FormNavigation from "./FormNavigation";
+import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
+import { selectEducation, addEducations, saveEditedEducation, deleteEducations } from "../resumeSlice";
 
 function EducationInputs(props) {
   const { handleChange, formData, addEducation } = props;
@@ -70,7 +71,9 @@ function EducationInputs(props) {
 }
 
 export default function Education() {
-  const [education, setEducation] = React.useState([]);
+  const education = useSelector(selectEducation);
+  const dispatch = useDispatch();
+  //const [education, setEducation] = React.useState([]);
 
   const [formData, setFormData] = React.useState({
     id: nanoid(),
@@ -85,7 +88,7 @@ export default function Education() {
   const [preview, setPreview] = React.useState(false);
 
   function deleteEducation(e) {
-    setEducation((prevEdu) => prevEdu.filter((edu) => edu.id !== e.target.id));
+    dispatch(deleteEducations(e.target.id))
   }
 
   function toggleEditing() {
@@ -138,28 +141,15 @@ export default function Education() {
     return false;
   }
 
-  function saveEditEducation() {
-    setEducation((prevEdu) =>
-      prevEdu.map((edu) =>
-        edu.id === formData.id
-          ? {
-              ...edu,
-              id: formData.id,
-              institution: formData.institution,
-              course: formData.course,
-              graduationYear: formData.graduationYear,
-              cs: formData.cs,
-            }
-          : edu
-      )
-    );
+  function saveEdit() {
+  dispatch(saveEditedEducation(formData))
     reset();
     toggleEditing();
   }
 
   function addEducation() {
     if (validate()) {
-      setEducation((prevEdu) => [...prevEdu, formData]);
+      dispatch(addEducations(formData))
       reset();
     }
   }
@@ -211,7 +201,7 @@ export default function Education() {
 
   function previewEducation() {
     if (validate()) {
-      editingOn ? saveEditEducation() : addEducation();
+      editingOn ? saveEdit() : addEducation();
     }
     setPreview((prev) => (prev = !prev));
   }
@@ -271,7 +261,7 @@ export default function Education() {
         <EducationInputs
           formData={formData}
           handleChange={handleChange}
-          addEducation={editingOn ? saveEditEducation : addEducation}
+          addEducation={editingOn ? saveEdit : addEducation}
         ></EducationInputs>
       )}
       {preview && educationItems}
