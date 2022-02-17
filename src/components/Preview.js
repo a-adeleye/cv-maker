@@ -1,5 +1,7 @@
 import React from "react";
 import "../styles/TypeOne.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectTemplate, selectProfile } from "../resumeSlice";
 
 
 // LEFT SECTION
@@ -117,7 +119,6 @@ function Contact() {
 }
 
 function Profile(props) {
-  console.log(props)
   return (
     <section className="profile-section">
       <h2>PROFILE</h2>
@@ -195,7 +196,13 @@ function Experience() {
 
 
 export default function Preview(props) {
-  const{name, profile} = props
+  const{name, profiler} = props
+
+const templateName = useSelector(selectTemplate);
+const profile = useSelector(selectProfile);
+
+console.log(templateName)
+console.log(profile)
 
   return (
     <div className="preview">

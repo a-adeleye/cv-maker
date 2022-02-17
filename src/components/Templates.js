@@ -1,15 +1,18 @@
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import typeOne from "../t1.jpg";
 import typeTwo from "../t2.jpg";
 import typeThree from "../t3.jpg";
 import FormNavigation from "./FormNavigation";
+import { chooseTemplate, selectTemplate } from "../resumeSlice";
 
 export default function Templates() {
-  const [template, setTemplate] = React.useState("typeOne");
+  const template = useSelector(selectTemplate);
+  const dispatch = useDispatch();
 
   function setActive(e) {
     const {id, name} = e.target;
-    setTemplate((prevTemplate) => (prevTemplate = id || name));
+    dispatch(chooseTemplate(id || name));
   }
 
   const activeStyle = { color: "#fbec5c", fontWeight: "bold" };

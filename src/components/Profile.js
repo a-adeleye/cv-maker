@@ -1,11 +1,16 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
+import { addProfile } from "../resumeSlice";
 import FormNavigation from "./FormNavigation";
 
 export default function Profile() {
-    const [profile, setProfile] = React.useState("");
+
+  const dispatch = useDispatch();
+  
+  const [data, setData] = React.useState("");
   
     function handleChange(e) {
-      setProfile((prev) => (prev = e.target.value));
+      setData((prev) => (prev = e.target.value));
     }
  
     return (
@@ -16,12 +21,12 @@ export default function Profile() {
             name="profile"
             rows="9"
             cols="10"
-            value={profile}
+            value={data}
             placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
             onChange={handleChange}
           ></textarea>
         </fieldset>
-        <FormNavigation back="/resumeform/generaldetails" next="/resumeform/education" text="NEXT"/>
+        <FormNavigation back="/resumeform/generaldetails" onClick={() => dispatch(addProfile(data))} next="/resumeform/education" text="NEXT"/>
       </div>
     );
   }
