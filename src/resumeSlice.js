@@ -65,6 +65,33 @@ export const resumeSlice = createSlice({
         (skill) => skill.id !== action.payload
       );
     },
+
+    addExperiences: (state, action) => {
+      state.experience = [...state.experience, action.payload];
+    },
+
+    deleteExperiences: (state, action) => {
+      state.experience = state.experience.filter(
+        (exp) => exp.id !== action.payload
+      );
+    },
+
+    saveEditedExperience: (state, action) => {
+      state.experience = state.experience.map((exp) =>
+        exp.id === action.payload.id
+          ? {
+              ...exp,
+              id: action.payload.id,
+              role: action.payload.role,
+              company: action.payload.company,
+              fromDate: action.payload.fromDate,
+              toDate: action.payload.toDate,
+              cw: action.payload.cw,
+              responsibilities: action.payload.responsibilities,
+            }
+          : exp
+      );
+    },
   },
 });
 
@@ -76,12 +103,16 @@ export const {
   saveEditedEducation,
   addSkills,
   deleteSkills,
+  addExperiences,
+  deleteExperiences,
+  saveEditedExperience,
 } = resumeSlice.actions;
 
 export const selectTemplate = (state) => state.resume.template;
 export const selectProfile = (state) => state.resume.profile;
 export const selectSkills = (state) => state.resume.skills;
 export const selectEducation = (state) => state.resume.education;
+export const selectExperience = (state) => state.resume.experience;
 
 /* export const incrementIfOdd = (amount) => (dispatch, getState) => {
   const currentValue = selectCount(getState());

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/TypeOne.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTemplate, selectProfile, selectEducation, selectSkills } from "../resumeSlice";
+import { selectTemplate, selectProfile, selectEducation, selectSkills, selectExperience } from "../resumeSlice";
 
 
 // LEFT SECTION
@@ -195,24 +195,25 @@ function Experience() {
 
 
 
-export default function Preview(props) {
-  const{name, profiler} = props
+export default function Preview() {
 
 const templateName = useSelector(selectTemplate);
 const profile = useSelector(selectProfile);
 const education = useSelector(selectEducation);
 const skills = useSelector(selectSkills);
+const experience = useSelector(selectExperience);
 
 console.log(templateName)
 console.log(profile)
 console.log(skills)
 console.log(education)
+console.log(experience)
 
   return (
     <div className="preview">
       <div className="left">
         <Address address = "Sports city, Dubai"/>
-        <Name name={name} title="Fullstack developer"/>
+        <Name name={"name"} title="Fullstack developer"/>
         <Education />
         <Skills />
         <Certifications />

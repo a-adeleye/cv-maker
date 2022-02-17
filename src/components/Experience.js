@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import FormNavigation from "./FormNavigation";
 import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
+import { addExperiences, deleteExperiences, saveEditedExperience, selectExperience } from "../resumeSlice";
 
 function ExperienceInput(props) {
   const {
@@ -102,7 +104,8 @@ function ExperienceInput(props) {
 }
 
 export default function Experience() {
-  const [experience, setExperience] = React.useState([]);
+  const experience = useSelector(selectExperience);
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = React.useState({
     id: nanoid(),
@@ -135,7 +138,7 @@ export default function Experience() {
 
   function addExperience() {
     if (validate()) {
-      setExperience((prevEx) => [...prevEx, formData]);
+      dispatch(addExperiences(formData));
       resetFormData();
     }
   }
@@ -178,7 +181,7 @@ export default function Experience() {
   }
 
   function deleteExperience(e) {
-    setExperience((prevExp) => prevExp.filter((exp) => exp.id !== e.target.id));
+    dispatch(deleteExperiences(e.target.id))
   }
 
   function editExperience(e) {
@@ -202,22 +205,7 @@ export default function Experience() {
   }
 
   function saveEditExperience() {
-    setExperience((prevExp) =>
-      prevExp.map((exp) =>
-        exp.id === formData.id
-          ? {
-              ...exp,
-              id: formData.id,
-              role: formData.role,
-              company: formData.company,
-              fromDate: formData.fromDate,
-              toDate: formData.toDate,
-              cw: formData.cw,
-              responsibilities: formData.responsibilities,
-            }
-          : exp
-      )
-    );
+    dispatch(saveEditedExperience(formData));
     resetFormData();
     toggleEditing();
   }
