@@ -7,63 +7,65 @@ function EducationInputs(props) {
   const { handleChange, formData, addEducation } = props;
 
   return (
-    <fieldset className="educationInputs">
-      <legend>EDUCATION</legend>
+    <div className="educationInputs">
+      <fieldset>
+        <legend>EDUCATION</legend>
 
-      <label>
-        Institution
-        <input
-          name="institution"
-          type="text"
-          value={formData.institution}
-          onChange={handleChange}
-          placeholder="Havard"
-        ></input>
-      </label>
-      <label>
-        Course
-        <input
-          name="course"
-          type="text"
-          value={formData.course}
-          onChange={handleChange}
-          placeholder="Computer Engineering"
-        ></input>
-      </label>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.5em",
-          flexBasis: "45%",
-        }}
-      >
         <label>
-          Graduation Year
+          Institution
           <input
-            name="graduationYear"
-            type="date"
-            value={formData.graduationYear}
+            name="institution"
+            type="text"
+            value={formData.institution}
             onChange={handleChange}
+            placeholder="Havard"
           ></input>
         </label>
         <label>
-          Still enrolled
+          Course
           <input
-            name="graduationYear"
-            type="checkbox"
-            value={formData.cs}
+            name="course"
+            type="text"
+            value={formData.course}
             onChange={handleChange}
+            placeholder="Computer Engineering"
           ></input>
         </label>
-      </div>
-      <label>
-        &nbsp;
-        <button className="addInputButton" onClick={addEducation}>
-          <i className="fas fa-plus"></i> add another education
-        </button>
-      </label>
-    </fieldset>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5em",
+            flexBasis: "45%",
+          }}
+        >
+          <label>
+            Graduation Year
+            <input
+              name="graduationYear"
+              type="date"
+              value={formData.graduationYear}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <label>
+            Still enrolled
+            <input
+              name="graduationYear"
+              type="checkbox"
+              value={formData.cs}
+              onChange={handleChange}
+            ></input>
+          </label>
+        </div>
+        <label>
+          &nbsp;
+          <button className="addInputButton" onClick={addEducation}>
+            <i className="fas fa-plus"></i> add another education
+          </button>
+        </label>
+      </fieldset>
+    </div>
   );
 }
 
@@ -86,33 +88,27 @@ export default function Education() {
     setEducation((prevEdu) => prevEdu.filter((edu) => edu.id !== e.target.id));
   }
 
-  function toggleEditing(){
-    setEditingOn(prevEdit => prevEdit = !prevEdit);
+  function toggleEditing() {
+    setEditingOn((prevEdit) => (prevEdit = !prevEdit));
   }
 
-console.log(editingOn);
-
-console.log(formData)
-
-function editEducation(e) {
-  const { id } = e.target;
-  setPreview((prev) => (prev = !prev));
-  toggleEditing();
-  let newArray = education.filter((edu) => (edu.id === id));
-  setFormData(
-    (prevData) =>
-      (prevData = {
-        ...formData,
-        id: newArray[0].id,
-        institution: newArray[0].institution,
-        course: newArray[0].course,
-        graduationYear: newArray[0].graduationYear,
-        cs: newArray[0].cs,
-      })
-  );
-}
-
-  console.log(education);
+  function editEducation(e) {
+    const { id } = e.target;
+    setPreview((prev) => (prev = !prev));
+    toggleEditing();
+    let newArray = education.filter((edu) => edu.id === id);
+    setFormData(
+      (prevData) =>
+        (prevData = {
+          ...formData,
+          id: newArray[0].id,
+          institution: newArray[0].institution,
+          course: newArray[0].course,
+          graduationYear: newArray[0].graduationYear,
+          cs: newArray[0].cs,
+        })
+    );
+  }
 
   function handleChange(e) {
     const { value, type, name } = e.target;
@@ -143,7 +139,7 @@ function editEducation(e) {
   }
 
   function saveEditEducation() {
-    setEducation(prevEdu => 
+    setEducation((prevEdu) =>
       prevEdu.map((edu) =>
         edu.id === formData.id
           ? {
@@ -181,8 +177,8 @@ function editEducation(e) {
     });
   }
 
-  function EducationNavigation(props) {
-    const { validate } = props;
+  function EducationNavigation() {
+
     return (
       <div className="formNavigation">
         <Link to="/resumeform/profile" style={{ textDecoration: "none" }}>
@@ -249,21 +245,23 @@ function editEducation(e) {
     );
   }
 
+  const educationList = education.map((edu, index) => (
+    <EducationPreview
+      key={edu.id}
+      id={edu.id}
+      institution={edu.institution}
+      course={edu.course}
+      graduationYear={edu.graduationYear}
+      number={index + 1}
+    />
+  ));
+
   const educationItems = (
     <fieldset className="educationPreview">
       <legend>EDUCATION</legend>
-      {education.map((edu, index) => (
-        <EducationPreview
-          key={edu.id}
-          id={edu.id}
-          institution={edu.institution}
-          course={edu.course}
-          graduationYear={edu.graduationYear}
-          number={index + 1}
-        />
-      ))}
+      {educationList}
       <button className="addInputButton" onClick={previewEducation}>
-        <i className="fas fa-plus"></i> add another education
+        <i className="fas fa-plus"></i> add more education
       </button>
     </fieldset>
   );
@@ -278,7 +276,7 @@ function editEducation(e) {
       )}
       {preview && educationItems}
       {!preview && (
-        <EducationNavigation validate={navCheck()} education={education} />
+        <EducationNavigation validate={navCheck()} />
       )}
       {preview && <PreviewNavigation />}
     </div>

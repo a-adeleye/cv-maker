@@ -31,7 +31,7 @@ main,
 
 .sidebar::before {
   content: "";
-  width: 1em;
+  width: 0.5em;
   height: 100%;
   background-color: #fbec5c;
   position: absolute;
@@ -41,15 +41,6 @@ main {
   width: 79%;
   overflow-y: scroll;
   padding: 2.8em;
-}
-
-header {
-  height: 4em;
-  background-color: #09203f;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 1em;
 }
 
 .link {
@@ -148,7 +139,6 @@ header {
 }
 
 .template {
-  /* flex-basis: 33%; */
   height: 70vh;
   display: flex;
   flex-direction: column;
@@ -214,10 +204,10 @@ input[type="date"] {
   padding: 0.2em 1em;
   display: block;
   height: 2.5em;
+  width: 100%;
 }
 
 input[type="date"] {
-  width: 100%;
   font-family: inherit;
 }
 
@@ -258,37 +248,47 @@ textarea {
   font-size: 1em;
 }
 
-.educationInputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.educationInputs label {
-  flex-basis: 45%;
-}
-
-.educationInputs .addInputButton {
-  height: 2.5em;
-}
-
-.education-preview {
+.education-preview,
+.experience-preview {
   display: grid;
   grid-template-columns: 0.5fr 6fr 0.5fr;
   align-items: center;
   padding: 0.3em;
 }
 
-.education-preview span {
+.education-preview span,
+.experience-preview span {
   display: block;
   font-size: 0.7em;
   margin: 1.5em;
   cursor: pointer;
 }
 
-.education-preview:hover {
+.education-preview:hover,
+.experience-preview:hover {
   background-color: #e9e9e9;
+}
+
+.experienceInputs .addInputButton {
+  grid-column: 1 / span 2;
+}
+
+.experience-preview ul {
+  padding-left: 1em;
+  font-size: 0.8em;
+}
+
+.responsibilities ul {
+  font-size: 1.2em;
+}
+
+.responsibilities li {
+  margin-top: 0.5em;
+}
+
+.responsibilities span {
+  margin-left: 2em;
+  cursor: pointer;
 }
 
 /* .educationInputs span,
@@ -324,22 +324,14 @@ textarea {
   transform: scale(0.97);
 }
 
-.experienceInputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1em;
-}
-
 .responsibilities {
   grid-column: 1 / span 2;
   font-size: inherit;
   color: #ebe6c1;
-  font-size: 1.3em;
   text-align: center;
 }
 
 .responsibilities label {
-  font-size: 0.8em;
   display: block;
   margin-top: 0.5em;
 }
@@ -350,11 +342,20 @@ textarea {
   width: 60%;
 }
 
+.responsibilities li {
+  font-size: 0.7em;
+  color: #09203f;
+}
+
+.responsibilities li i {
+  margin-left: 1em;
+}
+
 .responsibility-button {
   margin-top: 0.7em;
   height: 1.6em;
   margin-left: auto;
-  font-size: 0.7em;
+  font-size: 0.9em;
   width: 100%;
 }
 
