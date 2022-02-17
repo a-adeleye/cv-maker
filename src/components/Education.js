@@ -97,9 +97,28 @@ export default function Education() {
     });
   }
 
+  function validate() {
+    if (
+      formData.institution === "" ||
+      formData.course === "" ||
+      formData.yearFrom === "" ||
+      formData.yearTo === ""
+    ) {
+      return false;
+    } return true;
+  }
+
+  function navCheck() {
+    if(validate() || education.length !== 0){
+      return true;
+    } return false;
+  }
+
   function addEducation() {
-    setEducation((prevEdu) => [...prevEdu, formData]);
-    reset();
+    if (validate()) {
+      setEducation((prevEdu) => [...prevEdu, formData]);
+      reset();
+    }
   }
 
   function reset() {
@@ -115,29 +134,50 @@ export default function Education() {
     });
   }
 
-  function EducationNavigation() {
+  function EducationNavigation(props) {
+    const { validate} = props;
     return (
       <div className="formNavigation">
         <Link to="/resumeform/profile" style={{ textDecoration: "none" }}>
           <button>BACK</button>
         </Link>
-        <button className="next" onClick={previewEducation}>
-          PREVIEW
-        </button>
+        {validate && (
+          <button className="next" onClick={previewEducation}>
+            NEXT
+          </button>
+        )}
+        {!validate && (
+          <Link to="/resumeform/experience" style={{ textDecoration: "none" }}>
+            <button className="next">NEXT</button>
+          </Link>
+        )}
+      </div>
+    );
+  }
+
+  function PreviewNavigation() {
+    return (
+      <div className="formNavigation">
+        <button onClick={previewEducation}>BACK</button>
+        <Link to="/resumeform/experience" style={{ textDecoration: "none" }}>
+          <button>NEXT</button>
+        </Link>
       </div>
     );
   }
 
   function previewEducation() {
+    if (validate()) {
+      addEducation();
+    }
     setPreview((prev) => (prev = !prev));
   }
 
   function EducationPreview(props) {
-    const { institution, course, yearFrom, yearTo } = props;
+    const { institution, course, yearFrom, yearTo, id } = props;
 
     return (
-      <fieldset className="educationPreview">
-        <legend>EDUCATION</legend>
+      <div>
         <p>
           <strong>Institution</strong>: {institution}
         </p>
@@ -150,16 +190,27 @@ export default function Education() {
         <p>
           <strong>To</strong>: {yearTo}
         </p>
-
-        <button className="addInputButton" onClick={addEducation}>
-          <i className="fas fa-plus"></i> add another education
-        </button>
-      </fieldset>
+      </div>
     );
   }
 
-  const educationItems = education.map(edu => <EducationPreview institution = {edu.institution} course = {edu.course} yearFrom = {edu.yearFrom} yearTo = {edu.yearTo} />);
-
+  const educationItems = (
+    <fieldset className="educationPreview">
+      <legend>EDUCATION</legend>
+      {education.map((edu) => (
+        <EducationPreview
+          key={edu.id}
+          institution={edu.institution}
+          course={edu.course}
+          yearFrom={edu.yearFrom}
+          yearTo={edu.yearTo}
+        />
+      ))}
+      <button className="addInputButton" onClick={previewEducation}>
+        <i className="fas fa-plus"></i> add another education
+      </button>
+    </fieldset>
+  );
   return (
     <div className="education">
       {!preview && (
@@ -170,7 +221,8 @@ export default function Education() {
         ></EducationInputs>
       )}
       {preview && educationItems}
-      <EducationNavigation />
+      {!preview && <EducationNavigation validate={navCheck()} education={education}/>}
+      {preview && <PreviewNavigation />}
     </div>
   );
 }

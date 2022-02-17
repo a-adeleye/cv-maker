@@ -217,7 +217,7 @@ input[type="date"] {
 }
 
 input[type="date"] {
-  width: 92%;
+  width: 100%;
   font-family: inherit;
 }
 
