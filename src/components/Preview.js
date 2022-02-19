@@ -129,13 +129,14 @@ function Contact() {
   );
 }
 
-function Profile(props) {
+function Profile() {
+  const profile = useSelector(selectProfile);
   return (
     <section className="profile-section">
       <h2>PROFILE</h2>
       <hr></hr>
       <p>
-        {props.profile}
+        {profile}
       </p>
     </section>
   );
@@ -210,13 +211,12 @@ export default function Preview() {
 
 const templateName = useSelector(selectTemplate);
 
-const profile = useSelector(selectProfile);
+
 const education = useSelector(selectEducation);
 const skills = useSelector(selectSkills);
 const experience = useSelector(selectExperience);
 
 console.log(templateName)
-console.log(profile)
 console.log(skills)
 console.log(education)
 console.log(experience)
@@ -234,7 +234,7 @@ console.log(experience)
 
       <div className="right">
         <Contact />
-        <Profile profile={profile}/>
+        <Profile />
         <Experience />
       </div>
     </div>
