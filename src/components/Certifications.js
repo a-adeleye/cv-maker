@@ -3,34 +3,34 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateStorage } from "./localstorage";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
-import { selectEducation, addEducations, saveEditedEducation, deleteEducations} from "../resumeSlice";
+import { selectCertification, addCertifications, saveEditedCertification, deleteCertifications} from "../resumeSlice";
 
-function EducationInputs(props) {
-  const { handleChange, formData, addEducation } = props;
+function CertificationInputs(props) {
+  const { handleChange, formData, addCertification } = props;
 
   return (
     
       <fieldset className="one-column">
-        <legend>EDUCATION</legend>
+        <legend>CERTIFICATIONS</legend>
 
         <label>
-          Institution
+          Name
           <input
-            name="institution"
+            name="name"
             type="text"
-            value={formData.institution}
+            value={formData.name}
             onChange={handleChange}
-            placeholder="Havard"
+            placeholder="AWS Cloud Practitioner"
           ></input>
         </label>
         <label>
-          Course
+          Year achieved
           <input
-            name="course"
+            name="achievedYear"
             type="text"
-            value={formData.course}
+            value={formData.achievedYear}
             onChange={handleChange}
-            placeholder="Computer Engineering"
+            placeholder="2022"
           ></input>
         </label>
         <div
@@ -42,44 +42,45 @@ function EducationInputs(props) {
           }}
         >
           <label>
-            Graduation Year
+            Expiration year
             <input
-              name="graduationYear"
+              name="expirationYear"
               type="date"
-              value={formData.graduationYear}
+              placeholder="2025"
+              value={formData.expirationYear}
               onChange={handleChange}
             ></input>
           </label>
           <label>
-            Still enrolled
+            Does not expire
             <input
-              name="graduationYear"
+              name="expirationYear"
               type="checkbox"
-              value={formData.cs}
+              value={formData.exp}
               onChange={handleChange}
             ></input>
           </label>
         </div>
         <label>
           &nbsp;
-          <button className="addInputButton" onClick={addEducation}>
-            <i className="fas fa-plus"></i> add another education
+          <button className="addInputButton" onClick={addCertification}>
+            <i className="fas fa-plus"></i> add another certification
           </button>
         </label>
       </fieldset>
   );
 }
 
-export default function Education() {
-  const education = useSelector(selectEducation);
+export default function Certification() {
+  const certifications = useSelector(selectCertification);
   const dispatch = useDispatch();
 
   const [formData, setFormData] = React.useState({
     id: nanoid(),
-    institution: "",
-    course: "",
-    graduationYear: "",
-    cs: false,
+    name: "",
+    achievedYear: "",
+    expirationYear: "",
+    exp: false,
   });
 
   const [editingOn, setEditingOn] = React.useState(false);
@@ -87,33 +88,32 @@ export default function Education() {
 
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
-    let newData = {...savedData, education: education}
-    console.log(newData)
+    let newData = {...savedData, certifications: certifications}
     updateStorage(newData)
-  },[education])
+  },[certifications])
 
-  function deleteEducation(e) {
-    dispatch(deleteEducations(e.target.id))
+  function deleteCertification(e) {
+    dispatch(deleteCertifications(e.target.id))
   }
 
   function toggleEditing() {
     setEditingOn((prevEdit) => (prevEdit = !prevEdit));
   }
 
-  function editEducation(e) {
+  function editCertification(e) {
     const { id } = e.target;
     setPreview((prev) => (prev = !prev));
     toggleEditing();
-    let newArray = education.filter((edu) => edu.id === id);
+    let newArray = certifications.filter((cert) => cert.id === id);
     setFormData(
       (prevData) =>
         (prevData = {
           ...formData,
           id: newArray[0].id,
-          institution: newArray[0].institution,
-          course: newArray[0].course,
-          graduationYear: newArray[0].graduationYear,
-          cs: newArray[0].cs,
+          name: newArray[0].name,
+          achievedYear: newArray[0].achievedYear,
+          expirationYear: newArray[0].expirationYear,
+          exp: newArray[0].exp,
         })
     );
   }
@@ -123,19 +123,18 @@ export default function Education() {
     setFormData((prevData) => {
       return {
         ...prevData,
-        [name]: type === "checkbox" ? "still enrolled" : value,
+        [name]: type === "checkbox" ? "" : value,
       };
     });
   }
 
   function validate() {
-    if(education.length){
+    if(certifications.length){
       return true;
     }
     if (
-      formData.institution === "" ||
-      formData.course === "" ||
-      formData.graduationYear === ""
+      formData.name === "" ||
+      formData.achievedYear === ""
     ) {
       return false;
     }
@@ -143,14 +142,14 @@ export default function Education() {
   }
 
   function saveEdit() {
-  dispatch(saveEditedEducation(formData))
+  dispatch(saveEditedCertification(formData))
     reset();
     toggleEditing();
   }
 
-  function addEducation() {
+  function addCertification() {
     if (validate()) {
-      dispatch(addEducations(formData))
+      dispatch(addCertifications(formData))
       reset();
     }
   }
@@ -160,28 +159,28 @@ export default function Education() {
       return {
         ...prevData,
         id: nanoid(),
-        institution: "",
-        course: "",
-        graduationYear: "",
-        cs: false,
+        name: "",
+        achievedYear: "",
+        expirationYear: "",
+        exp: false,
       };
     });
   }
 
-  function EducationNavigation() {
+  function CertificationNavigation() {
 
     return (
       <div className="formNavigation">
-        <Link to="/resumeform/profile" style={{ textDecoration: "none" }}>
+        <Link to="/resumeform/skill" style={{ textDecoration: "none" }}>
           <button>BACK</button>
         </Link>
         {validate() && (
-          <button className="next" onClick={previewEducation}>
+          <button className="next" onClick={previewCertification}>
             NEXT
           </button>
         )}
         {!validate() && (
-          <Link to="/resumeform/experience" style={{ textDecoration: "none" }}>
+          <Link to="/resumeform/preview" style={{ textDecoration: "none" }}>
             <button className="next">NEXT</button>
           </Link>
         )}
@@ -192,47 +191,47 @@ export default function Education() {
   function PreviewNavigation() {
     return (
       <div className="formNavigation">
-        <button onClick={previewEducation}>BACK</button>
-        <Link to="/resumeform/experience" style={{ textDecoration: "none" }}>
+        <button onClick={previewCertification}>BACK</button>
+        <Link to="/resumeform/preview" style={{ textDecoration: "none" }}>
           <button className="next">NEXT</button>
         </Link>
       </div>
     );
   }
 
-  function previewEducation() {
-    if(validate() && !formData.institution){
+  function previewCertification() {
+    if(validate() && !formData.name){
       setPreview((prev) => (prev = !prev));
       return;
     }
     if (validate()) {
-      editingOn ? saveEdit() : addEducation();
+      editingOn ? saveEdit() : addCertification();
     }
     setPreview((prev) => (prev = !prev));
   }
 
-  function EducationPreview(props) {
-    const { institution, course, graduationYear, id, number } = props;
+  function CertificationPreview(props) {
+    const { name,achievedYear, expirationYear, id, number } = props;
 
     return (
       <div className="three-columns">
         <h4>{number}</h4>
         <div>
           <p>
-            <strong>Institution</strong>: {institution}
+            <strong>Certification name</strong>: {name}
           </p>
           <p>
-            <strong>Course</strong>: {course}
+            <strong>Achieved year</strong>: {achievedYear}
           </p>
           <p>
-            <strong>Graduation year</strong>: {graduationYear}
+            <strong>Expiration year</strong>: {expirationYear}
           </p>
         </div>
         <div>
-          <span onClick={editEducation}>
+          <span onClick={editCertification}>
             <i className="fas fa-edit" id={id}></i>
           </span>
-          <span onClick={deleteEducation}>
+          <span onClick={deleteCertification}>
             <i className="fas fa-trash" id={id}></i>
           </span>
         </div>
@@ -240,38 +239,38 @@ export default function Education() {
     );
   }
 
-  const educationList = education.map((edu, index) => (
-    <EducationPreview
+  const certificationList = certifications.map((cert, index) => (
+    <CertificationPreview
       key={nanoid()}
-      id={edu.id}
-      institution={edu.institution}
-      course={edu.course}
-      graduationYear={edu.graduationYear}
+      id={cert.id}
+      name={cert.name}
+      achievedYear={cert.achievedYear}
+      expirationYear={cert.expirationYear}
       number={index + 1}
     />
   ));
 
-  const educationItems = (
+  const certificationItems = (
     <fieldset>
-      <legend>EDUCATION</legend>
-      {educationList}
-      <button className="addInputButton" onClick={previewEducation}>
-        <i className="fas fa-plus"></i> add more education
+      <legend>CERTIFICATIONS</legend>
+      {certificationList}
+      <button className="addInputButton" onClick={previewCertification}>
+        <i className="fas fa-plus"></i> add more certifications
       </button>
     </fieldset>
   );
   return (
-    <div className="education">
+    <div className="certifications">
       {!preview && (
-        <EducationInputs
+        <CertificationInputs
           formData={formData}
           handleChange={handleChange}
-          addEducation={editingOn ? saveEdit : addEducation}
-        ></EducationInputs>
+          addCertification={editingOn ? saveEdit : addCertification}
+        ></CertificationInputs>
       )}
-      {preview && educationItems}
+      {preview && certificationItems}
       {!preview && (
-        <EducationNavigation />
+        <CertificationNavigation />
       )}
       {preview && <PreviewNavigation />}
     </div>

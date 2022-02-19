@@ -124,7 +124,7 @@ export default function Experience() {
 
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
-    let newData = {...savedData, eperience: experience}
+    let newData = {...savedData, experience: experience}
     updateStorage(newData)
   },[experience])
 

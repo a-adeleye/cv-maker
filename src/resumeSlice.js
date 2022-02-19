@@ -4,8 +4,6 @@ import { downloadFromStorage} from "./components/localstorage";
 
 const initialState = downloadFromStorage();
 
-console.log(initialState);
-
 export const resumeSlice = createSlice({
   name: "resume",
   initialState,
@@ -41,6 +39,31 @@ export const resumeSlice = createSlice({
               cs: action.payload.cs,
             }
           : edu
+      );
+    },
+
+    addCertifications: (state, action) => {
+      state.certifications = [...state.certifications, action.payload];
+    },
+
+    deleteCertifications: (state, action) => {
+      state.certifications = state.certifications.filter(
+        (cert) => cert.id !== action.payload
+      );
+    },
+
+    saveEditedCertification: (state, action) => {
+      state.certifications = state.certifications.map((cert) =>
+        cert.id === action.payload.id
+          ? {
+              ...cert,
+              id: action.payload.id,
+              name: action.payload.name,
+              achievedYear: action.payload.achievedYear,
+              expirationYear: action.payload.expirationYear,
+              exp: action.payload.exp,
+            }
+          : cert
       );
     },
 
@@ -97,6 +120,9 @@ export const {
   addEducations,
   deleteEducations,
   saveEditedEducation,
+  addCertifications,
+  deleteCertifications,
+  saveEditedCertification,
   addSkills,
   deleteSkills,
   addExperiences,
@@ -108,6 +134,7 @@ export const selectTemplate = (state) => state.resume.template;
 export const selectProfile = (state) => state.resume.profile;
 export const selectSkills = (state) => state.resume.skills;
 export const selectEducation = (state) => state.resume.education;
+export const selectCertification = (state) => state.resume.certifications;
 export const selectExperience = (state) => state.resume.experience;
 export const selectGeneralDetails = (state) => state.resume.generalDetails;
 

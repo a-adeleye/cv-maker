@@ -13,7 +13,9 @@
 
 .right {
   padding: 2em 2em;
+  min-height: 60em;
   text-align: justify;
+  justify-content: flex-start;
 }
 
 .contact-section {
@@ -44,7 +46,7 @@
 }
 
 .profile-section {
-  margin: 1.5em auto;
+  font-size: 1.2em;
 }
 
 .experience-details {
@@ -57,7 +59,7 @@
 }
 
 .experience-date {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .experience-details ul {
@@ -67,8 +69,8 @@
 .left {
   padding: 0 2em;
   background-color: #aba9a8;
-  height: 100%;
-  max-width: 18em;
+  min-height: 60em;
+  width: 35em;
 }
 
 .address-section {
@@ -90,22 +92,6 @@
   inset: auto 0 1em 0;
 }
 
-div._1EEDX_ygkSb {
-  height: 20px;
-}
-
-/* textarea._1EEDX {
-  height: 20px;
-} */
-
-/* ._1EEDX {
-  height: 20px;
-}
-
-._ygkSb {
-  
-} */
-
 .address {
   align-self: flex-end;
   margin: auto auto 0.8em 0.8em;
@@ -122,6 +108,9 @@ div._1EEDX_ygkSb {
 
 .name {
   font-size: 2em;
+}
+h2 {
+  font-size: 1.3em;
 }
 
 .education-section,
@@ -140,7 +129,15 @@ div._1EEDX_ygkSb {
 .education-year,
 .certification-year,
 .experience-year {
-  font-size: 0.8em;
+  font-size: 1em;
+}
+.institution-name {
+  text-transform: capitalize;
+  margin: 0.2em 0;
+}
+
+.role {
+  margin: 0.3em 0;
 }
 
 .skill-details {

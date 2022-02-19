@@ -1,11 +1,19 @@
 import React from "react";
 import "../styles/TypeOne.css";
-import { useSelector, useDispatch } from 'react-redux';
-import { selectTemplate, selectProfile, selectEducation, selectSkills, selectExperience, selectGeneralDetails } from "../resumeSlice";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectTemplate,
+  selectProfile,
+  selectEducation,
+  selectSkills,
+  selectExperience,
+  selectCertification,
+  selectGeneralDetails,
+} from "../resumeSlice";
+import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
 
 // LEFT SECTION
-
 
 function Address() {
   const generalDetails = useSelector(selectGeneralDetails);
@@ -34,69 +42,56 @@ function Name() {
 }
 
 function Education() {
+  const education = useSelector(selectEducation);
+  const educationList = education.map((edu) => (
+    <div className="education-details" key={nanoid()}>
+      <h4 className="course-name">{edu.course}</h4>
+      <h4 className="institution-name">{edu.institution}</h4>
+      <p className="education-year">{edu.graduationYear}</p>
+    </div>
+  ));
+
   return (
     <section className="education-section">
       <h2>EDUCATION</h2>
       <hr></hr>
-      <div className="education-details">
-        <h5 className="course-name">Course</h5>
-        <h5 className="institution-name">University name</h5>
-        <p className="education-year">2013 - 2018</p>
-      </div>
-      <div className="education-details">
-        <h5 className="course-name">Course</h5>
-        <h5 className="institution-name">University name</h5>
-        <p className="education-year">2013 - 2018</p>
-      </div>
-      <div className="education-details">
-        <h5 className="course-name">Course</h5>
-        <h5 className="institution-name">University name</h5>
-        <p className="education-year">2013 - 2018</p>
-      </div>
+      {educationList}
     </section>
   );
 }
 
 function Skills() {
+  const skills = useSelector(selectSkills);
+  const skillsList = skills.map((skill) => (
+    <li key={nanoid()}>{skill.text}</li>
+  ));
   return (
     <section className="skills-section">
       <h2>SKILLS</h2>
       <hr></hr>
       <div className="skill-details">
-        <ul>
-          <li>Web design</li>
-          <li>Web design</li>
-          <li>Web design</li>
-          <li>Web design</li>
-          <li>Web design</li>
-          <li>Web design</li>
-        </ul>
+        <ul>{skillsList}</ul>
       </div>
     </section>
   );
 }
 
 function Certifications() {
+  const certifications = useSelector(selectCertification);
+  const certificationList = certifications.map((certification) => (
+    <div className="certification-details" key={nanoid()}>
+      <h5 className="certification-name">{certification.name}</h5>
+      <p className="certification-year">{certification.achievedYear} {certification.expirationYear && "-"} {certification.expirationYear}</p>
+    </div>
+  ));
   return (
     <section className="certifications-section">
       <h2>CERTIFICATIONS</h2>
       <hr></hr>
-      <div className="certification-details">
-        <h5 className="certification-name">AWS Cloud Practioner Associate</h5>
-        <p className="certification-year">2013 - 2018</p>
-      </div>
-      <div className="certification-details">
-        <h5 className="certification-name">AWS Cloud Practioner Associate</h5>
-        <p className="certification-year">2013 - 2018</p>
-      </div>
-      <div className="certification-details">
-        <h5 className="certification-name">AWS Cloud Practioner Associate</h5>
-        <p className="certification-year">2013 - 2018</p>
-      </div>
+      {certificationList}
     </section>
   );
 }
-
 
 // RIGHT SECTION
 
@@ -106,7 +101,7 @@ function Contact() {
   function generateInitials() {
     let firstNameInitial = generalDetails.firstName.charAt(0);
     let secondNameInitial = generalDetails.lastName.charAt(0);
-    return `${firstNameInitial}${secondNameInitial}`
+    return `${firstNameInitial}${secondNameInitial}`;
   }
 
   return (
@@ -116,13 +111,15 @@ function Contact() {
       </div>
       <div className="contact-details">
         <p>
-          <i className="fas fa-envelope"></i>{generalDetails.email}
+          <i className="fas fa-envelope"></i>
+          {generalDetails.email}
         </p>
         <p>
           <i className="fas fa-mobile"></i> {generalDetails.phone}
         </p>
         <p>
-          <i className="fas fa-globe"></i>{generalDetails.website}
+          <i className="fas fa-globe"></i>
+          {generalDetails.website}
         </p>
       </div>
     </section>
@@ -135,108 +132,79 @@ function Profile() {
     <section className="profile-section">
       <h2>PROFILE</h2>
       <hr></hr>
-      <p>
-        {profile}
-      </p>
+      <p>{profile}</p>
     </section>
   );
 }
 
 function Experience() {
+  const experience = useSelector(selectExperience);
+  const experienceList = experience.map((exp) => (
+    <div className="experience-details" key={nanoid()}>
+      <h4 className="role">{exp.role}</h4>
+      <h4 className="company-name">{exp.company}</h4>
+      <p className="experience-date">
+        &nbsp; | <strong>{exp.fromDate}</strong> to{" "}
+        <strong>{exp.toDate}</strong>
+      </p>
+      <ul>
+        {exp.responsibilities.map((responsibility) => (
+          <li key={nanoid()}>{responsibility}</li>
+        ))}
+      </ul>
+    </div>
+  ));
   return (
     <section className="experience-section">
       <h2>EXPERIENCE</h2>
       <hr></hr>
-      <div className="experience-details">
-        <h5 className="role">CHIEF EXECUTIVE OFFICER</h5>
-        <h5 className="company-name">LEATRA LTD</h5>
-        <p className="experience-date">
-          &nbsp; | <strong>2030</strong> to <strong>Present</strong>
-        </p>
 
-        <ul>
-          <li>aboris nisi ut aliquip ex ea commodo consequat. </li>
-          <li>
-            empor incididunt ut labore et dolore magna aliqua. Ut enim ad mini
-          </li>
-          <li>
-            bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco
-          </li>
-        </ul>
-      </div>
-      <div className="experience-details">
-        <h5 className="role">CHIEF EXECUTIVE OFFICER</h5>
-        <h5 className="company-name">LEATRA LTD</h5>
-        <p className="experience-date">
-          &nbsp; | <strong>2030</strong> to <strong>Present</strong>
-        </p>
-
-        <ul>
-          <li>aboris nisi ut aliquip ex ea commodo consequat. </li>
-          <li>
-            empor incididunt ut labore et dolore magna aliqua. Ut enim ad mini
-          </li>
-          <li>
-            bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco
-          </li>
-        </ul>
-      </div>
-      <div className="experience-details">
-        <h5 className="role">CHIEF EXECUTIVE OFFICER</h5>
-        <h5 className="company-name">LEATRA LTD</h5>
-        <p className="experience-date">
-          &nbsp; | <strong>2030</strong> to <strong>Present</strong>
-        </p>
-
-        <ul>
-          <li>aboris nisi ut aliquip ex ea commodo consequat. </li>
-          <li>
-            empor incididunt ut labore et dolore magna aliqua. Ut enim ad mini
-          </li>
-          <li>
-            bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco
-          </li>
-        </ul>
-      </div>
+      {experienceList}
     </section>
   );
 }
 
-
-
 export default function Preview() {
+  const template = useSelector(selectTemplate);
 
-const templateName = useSelector(selectTemplate);
+  console.log(template);
 
+  function FormNavigation() {
+    return (
+      <div className="formNavigation">
+        <Link
+          to="/resumeform/skills"
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <button>BACK</button>
+        </Link>
 
-const education = useSelector(selectEducation);
-const skills = useSelector(selectSkills);
-const experience = useSelector(selectExperience);
-
-console.log(templateName)
-console.log(skills)
-console.log(education)
-console.log(experience)
-//console.log(generalDetails)
+        <button className="next">DOWNLOAD</button>
+      </div>
+    );
+  }
 
   return (
     <div className="preview">
-      <div className="left">
-        <Address />
-        <Name name={"name"} title="Fullstack developer"/>
-        <Education />
-        <Skills />
-        <Certifications />
+      <div className="resume">
+        <div className="left">
+          <Address />
+          <Name name={"name"} title="Fullstack developer" />
+          <Education />
+          <Skills />
+          <Certifications />
+        </div>
+
+        <div className="right">
+          <Contact />
+          <Profile />
+          <Experience />
+        </div>
       </div>
 
-      <div className="right">
-        <Contact />
-        <Profile />
-        <Experience />
-      </div>
+      <FormNavigation />
     </div>
   );
 }

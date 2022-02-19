@@ -54,7 +54,7 @@ export default function Skills() {
         </Link>
 
         <Link
-          to="/resumeform/preview"
+          to="/resumeform/certifications"
           style={{
             textDecoration: "none",
           }}

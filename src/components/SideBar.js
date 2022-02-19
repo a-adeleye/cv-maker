@@ -21,6 +21,9 @@ export default function SideBar() {
       <NavLink to="skill" className="link">
         Skills
       </NavLink>
+      <NavLink to="certifications" className="link">
+        Certifications
+      </NavLink>
       <NavLink to="preview" className="link">
         Preview
       </NavLink>
