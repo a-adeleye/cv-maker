@@ -154,11 +154,53 @@ main {
 fieldset {
   padding: 0 3em 1em;
   margin-bottom: 1em;
-  display: grid;
-  gap: 1em;
   width: 35em;
   min-height: 22em;
   border: 0.2em solid #09203f;
+}
+
+.one-column,
+.two-columns,
+.three-columns {
+  display: grid;
+  gap: 1em;
+  align-items: center;
+}
+
+.two-columns p {
+  margin-top: 0.6em;
+}
+
+.two-columns {
+  grid-template-columns: 1fr 1fr;
+}
+
+.three-columns {
+  grid-template-columns: 0.5fr 6fr 0.5fr;
+  align-items: center;
+  padding: 0.3em;
+}
+
+.two-columns span,
+.three-columns span {
+  display: block;
+  font-size: 0.7em;
+  margin: 1.5em;
+  cursor: pointer;
+}
+
+.two-colums ul {
+  align-self: center;
+}
+
+.three-columns ul {
+  padding-left: 1em;
+  font-size: 0.8em;
+}
+
+.three-columns:hover,
+.three-columns:hover {
+  background-color: #e9e9e9;
 }
 
 .formNavigation {
@@ -169,14 +211,6 @@ fieldset {
 
 .next {
   background-color: #fbec5c;
-}
-
-.back {
-  background-color: #537895;
-}
-
-.general-details fieldset {
-  grid-template-columns: 1fr 1fr;
 }
 
 legend {
@@ -203,8 +237,9 @@ input[type="date"] {
   font-size: 1em;
   padding: 0.2em 1em;
   display: block;
-  height: 2.5em;
+  height: 2em;
   width: 100%;
+  margin-top: 0.2em;
 }
 
 input[type="date"] {
@@ -235,7 +270,7 @@ textarea {
   margin-bottom: 1em;
   font-family: inherit;
   max-width: 25em;
-  min-width: 18em;
+  min-width: 24em;
   height: 12em;
   padding: 0.4em 1em;
 }
@@ -246,76 +281,19 @@ textarea {
   background-color: #09203f;
   color: #fbec5c;
   font-size: 1em;
+  margin-top: 1em;
 }
 
-.education-preview,
-.experience-preview {
-  display: grid;
-  grid-template-columns: 0.5fr 6fr 0.5fr;
-  align-items: center;
-  padding: 0.3em;
-}
-
-.education-preview span,
-.experience-preview span {
-  display: block;
-  font-size: 0.7em;
-  margin: 1.5em;
-  cursor: pointer;
-}
-
-.education-preview:hover,
-.experience-preview:hover {
-  background-color: #e9e9e9;
-}
-
-.experienceInputs .addInputButton {
+.two-columns .addInputButton {
   grid-column: 1 / span 2;
 }
 
-.experience-preview ul {
-  padding-left: 1em;
-  font-size: 0.8em;
-}
-
-.responsibilities ul {
+ul {
   font-size: 1.2em;
 }
 
-.responsibilities li {
-  margin-top: 0.5em;
-}
-
-.responsibilities span {
-  margin-left: 2em;
-  cursor: pointer;
-}
-
-/* .educationInputs span,
-.experienceInputs span {
-  display: block;
-  margin-top: 1em;
-  margin-right: 0.3em;
-  cursor: pointer;
-  font-size: 0.8em;
-  text-align: right;
-  color: #537895;
-} */
-
 .skills input {
   width: 100%;
-}
-
-.skills-list li {
-  color: #09203f;
-}
-
-.skills-list span {
-  color: #b1b1b1;
-}
-
-.skills ul label {
-  margin-left: -1em;
 }
 
 .educationInputs span:active,
@@ -342,13 +320,23 @@ textarea {
   width: 60%;
 }
 
-.responsibilities li {
+.list-item {
   font-size: 0.7em;
   color: #09203f;
+  height: 1.5em;
+  border-bottom: 1px solid #b1b1b1;
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
 }
 
-.responsibilities li i {
-  margin-left: 1em;
+.list-item:hover {
+  background-color: #dee2ec;
+}
+
+.list-item span {
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .responsibility-button {
@@ -357,22 +345,6 @@ textarea {
   margin-left: auto;
   font-size: 0.9em;
   width: 100%;
-}
-
-.skills-list {
-  margin-left: 1.4em;
-  color: #ebe6c1;
-}
-
-.skills-list span {
-  margin-left: 1em;
-  cursor: pointer;
-  font-size: 0.8em;
-}
-
-.experience-list {
-  margin-left: 1.4em;
-  color: #ebe6c1;
 }
 
 .preview {

@@ -2,15 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   template: "",
-  generalDetails: {
-    firstName: "",
-    lastName: "",
-    title: "",
-    email: "",
-    phone: "",
-    address: "",
-    website: "",
-  },
+  generalDetails: {},
   profile: "",
   education: [],
   experience: [],
@@ -76,6 +68,12 @@ export const resumeSlice = createSlice({
       );
     },
 
+   /* deleteResponsibilities: (state, action) => {
+        let newArray = state.experience.responsibilities;
+        newArray.splice(action.payload, 1);
+        state.experience = [...state]
+    },*/
+
     saveEditedExperience: (state, action) => {
       state.experience = state.experience.map((exp) =>
         exp.id === action.payload.id
@@ -92,12 +90,25 @@ export const resumeSlice = createSlice({
           : exp
       );
     },
+
+    addGeneralDetails: (state, action) => {
+      state.generalDetails = action.payload;
+    },
+
+    editGeneralDetails: (state, action) => {
+        const {payload} = action;
+      state.generalDetails = {...state.generalDetails, ...payload}
+    },
+
   },
 });
 
 export const {
   chooseTemplate,
+  addGeneralDetails,
+  editGeneralDetails,
   addProfile,
+  saveEditedProfile,
   addEducations,
   deleteEducations,
   saveEditedEducation,
@@ -113,6 +124,7 @@ export const selectProfile = (state) => state.resume.profile;
 export const selectSkills = (state) => state.resume.skills;
 export const selectEducation = (state) => state.resume.education;
 export const selectExperience = (state) => state.resume.experience;
+export const selectGeneralDetails = (state) => state.resume.generalDetails;
 
 /* export const incrementIfOdd = (amount) => (dispatch, getState) => {
   const currentValue = selectCount(getState());

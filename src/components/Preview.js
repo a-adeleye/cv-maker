@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/TypeOne.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTemplate, selectProfile, selectEducation, selectSkills, selectExperience } from "../resumeSlice";
+import { selectTemplate, selectProfile, selectEducation, selectSkills, selectExperience, selectGeneralDetails } from "../resumeSlice";
 
 
 // LEFT SECTION
@@ -198,6 +198,7 @@ function Experience() {
 export default function Preview() {
 
 const templateName = useSelector(selectTemplate);
+const generalDetails = useSelector(selectGeneralDetails);
 const profile = useSelector(selectProfile);
 const education = useSelector(selectEducation);
 const skills = useSelector(selectSkills);
@@ -208,6 +209,7 @@ console.log(profile)
 console.log(skills)
 console.log(education)
 console.log(experience)
+console.log(generalDetails)
 
   return (
     <div className="preview">

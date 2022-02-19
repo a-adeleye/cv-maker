@@ -1,9 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import FormNavigation from "./FormNavigation";
 import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
-import { addExperiences, deleteExperiences, saveEditedExperience, selectExperience } from "../resumeSlice";
+import {
+  addExperiences,
+  deleteExperiences,
+  saveEditedExperience,
+  selectExperience,
+} from "../resumeSlice";
 
 function ExperienceInput(props) {
   const {
@@ -17,7 +21,7 @@ function ExperienceInput(props) {
   } = props;
 
   const responsibilityList = data.responsibilities.map((resp, index) => (
-    <li key={data.id + index} id={index}>
+    <li key={data.id + index} id={index} className="list-item">
       {resp}
       <span>
         <i
@@ -30,76 +34,74 @@ function ExperienceInput(props) {
   ));
 
   return (
-    <div className="experienceInputs">
-      <fieldset>
-        <legend>EXPERIENCE</legend>
-        <label>
-          Role
-          <input
-            name="role"
-            type="text"
-            value={data.role}
-            onChange={handleChange}
-            placeholder="Chief Executive Officer"
-          ></input>
-        </label>
-        <label>
-          Company
-          <input
-            name="company"
-            type="text"
-            value={data.company}
-            onChange={handleChange}
-            placeholder="Google"
-          ></input>
-        </label>
+    <fieldset className="two-columns">
+      <legend>EXPERIENCE</legend>
+      <label>
+        Role
+        <input
+          name="role"
+          type="text"
+          value={data.role}
+          onChange={handleChange}
+          placeholder="Chief Executive Officer"
+        ></input>
+      </label>
+      <label>
+        Company
+        <input
+          name="company"
+          type="text"
+          value={data.company}
+          onChange={handleChange}
+          placeholder="Google"
+        ></input>
+      </label>
 
-        <label>
-          From
-          <input
-            name="fromDate"
-            type="date"
-            value={data.fromDate}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label>
-          To
-          <input
-            name="toDate"
-            type="date"
-            value={data.toDate}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label>
-          I currently work here
-          <input name="toDate" type="checkbox" onChange={handleChange}></input>
-        </label>
+      <label>
+        From
+        <input
+          name="fromDate"
+          type="date"
+          value={data.fromDate}
+          onChange={handleChange}
+        ></input>
+      </label>
+      <label>
+        To
+        <input
+          name="toDate"
+          type="date"
+          value={data.toDate}
+          onChange={handleChange}
+        ></input>
+      </label>
+      <label>
+        I currently work here
+        <input name="toDate" type="checkbox" onChange={handleChange}></input>
+      </label>
 
-        <div className="responsibilities">
-          <label>
-            Responsibility
-            <input
-              type="text"
-              value={responsibility}
-              onChange={handleResponsibility}
-            ></input>
-          </label>
+      <div className="responsibilities">
+        <label>
+          Responsibility
+          <input
+            type="text"
+            value={responsibility}
+            onChange={handleResponsibility}
+          ></input>
+        </label>
+      </div>
+      <div className="responsibilities">
+        <div>
+          <ul>{responsibilityList}</ul>
         </div>
-        <div className="responsibilities">
-          <div>
-            <ul>{responsibilityList}</ul>
-          </div>
-          <button className="responsibility-button" onClick={addResponsibility}>
-            <i className="fas fa-plus"></i> add responsibility
-          </button>
-        </div>
-        <button className="addInputButton" onClick={addExperience}>
-          <i className="fas fa-plus"></i> add another experience
+        <button className="responsibility-button" onClick={addResponsibility}>
+          <i className="fas fa-plus"></i> add responsibility
         </button>
-      </fieldset>
-    </div>
+      </div>
+      <button className="addInputButton" onClick={addExperience}>
+        <i className="fas fa-plus"></i> add another experience
+      </button>
+    </fieldset>
   );
 }
 
@@ -181,7 +183,7 @@ export default function Experience() {
   }
 
   function deleteExperience(e) {
-    dispatch(deleteExperiences(e.target.id))
+    dispatch(deleteExperiences(e.target.id));
   }
 
   function editExperience(e) {
@@ -214,32 +216,23 @@ export default function Experience() {
     setEditingOn((prevEdit) => (prevEdit = !prevEdit));
   }
 
-  function navCheck() {
-    if (validate() || experience.length !== 0) {
-      return true;
-    }
-    return false;
-  }
-
   function deleteResponsibility(e) {
     const { id } = e.target;
-    let newB = formData.responsibilities;
-    newB.splice(id, 1);
-
+    let newArray = [...formData.responsibilities];
+    newArray.splice(id, 1);
     setFormData((prevData) => {
-      return { ...prevData, responsibilities: newB };
+      return { ...prevData, responsibilities: newArray };
     });
   }
 
-  console.log(formData);
-  console.log(experience);
+  console.log(formData.responsibilities);
 
   const [preview, setPreview] = React.useState(false);
 
   function PreviewExperience(props) {
     const { role, company, from, to, responsibilities, number, id } = props;
     return (
-      <div className="experience-preview">
+      <div className="three-columns">
         <h4>{number}</h4>
         <details>
           <summary>
@@ -292,11 +285,13 @@ export default function Experience() {
         <legend>EXPERIENCE</legend>
         {experienceList}
         <button className="addInputButton" onClick={previewExperience}>
-        <i className="fas fa-plus"></i> add more experience
-      </button>
+          <i className="fas fa-plus"></i> add more experience
+        </button>
       </fieldset>
     );
   }
+
+  console.log(experience);
 
   function ExperienceNavigation() {
     return (
@@ -332,7 +327,7 @@ export default function Experience() {
   }
 
   function previewExperience() {
-    if(validate()){
+    if (validate()) {
       editingOn ? saveEditExperience() : addExperience();
     }
     setPreview((prev) => (prev = !prev));

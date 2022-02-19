@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import FormNavigation from "./FormNavigation";
+import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { addSkills, selectSkills, deleteSkills } from "../resumeSlice";
 
@@ -19,14 +19,13 @@ export default function Skills() {
 
   function addSkill() {
     if (tempSkills.text !== "") {
-      //setSkills((prevSkill) => [...prevSkill, tempSkills]);
       dispatch(addSkills(tempSkills));
       reset();
     }
   }
 
   function deleteSkill(e) {
-    dispatch(deleteSkills(e.target.id))
+    dispatch(deleteSkills(e.target.id));
   }
 
   function reset() {
@@ -35,18 +34,42 @@ export default function Skills() {
     });
   }
 
+  function FormNavigation() {
+    return (
+      <div className="formNavigation">
+        <Link
+          to="/resumeform/experience"
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <button>BACK</button>
+        </Link>
+
+        <Link
+          to="/resumeform/preview"
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <button className="next">NEXT</button>
+        </Link>
+      </div>
+    );
+  }
+
   const skillList = skills.map((skill) => (
-    <li key={skill.id} id={skill.id}>
+    <li key={skill.id} id={skill.id} className="list-item">
       {skill.text}
       <span id={skill.id} onClick={deleteSkill}>
-        <i className="fas fa-minus"></i> delete
+        <i className="fas fa-trash"></i>
       </span>
     </li>
   ));
 
   return (
     <section className="skills">
-      <fieldset>
+      <fieldset className="one-column">
         <legend>SKILLS</legend>
         <label>
           Skill
@@ -56,21 +79,14 @@ export default function Skills() {
             onChange={handleChange}
           ></input>
         </label>
-        <ul className="skills-list">
-          {skills.length !== 0 && <label>Added skills</label>}
+        <ul>
           {skillList}
         </ul>
-        <span></span>
-
         <button className="addInputButton" onClick={() => addSkill()}>
           <i className="fas fa-plus"></i> add skill
         </button>
       </fieldset>
-      <FormNavigation
-        back="/resumeform/experience"
-        next="/resumeform/preview"
-        text="PREVIEW"
-      />
+      <FormNavigation />
     </section>
   );
 }

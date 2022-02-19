@@ -2,14 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
-import { selectEducation, addEducations, saveEditedEducation, deleteEducations } from "../resumeSlice";
+import { selectEducation, addEducations, saveEditedEducation, deleteEducations} from "../resumeSlice";
 
 function EducationInputs(props) {
   const { handleChange, formData, addEducation } = props;
 
   return (
-    <div className="educationInputs">
-      <fieldset>
+    
+      <fieldset className="one-column">
         <legend>EDUCATION</legend>
 
         <label>
@@ -66,14 +66,12 @@ function EducationInputs(props) {
           </button>
         </label>
       </fieldset>
-    </div>
   );
 }
 
 export default function Education() {
   const education = useSelector(selectEducation);
   const dispatch = useDispatch();
-  //const [education, setEducation] = React.useState([]);
 
   const [formData, setFormData] = React.useState({
     id: nanoid(),
@@ -84,7 +82,6 @@ export default function Education() {
   });
 
   const [editingOn, setEditingOn] = React.useState(false);
-
   const [preview, setPreview] = React.useState(false);
 
   function deleteEducation(e) {
@@ -124,6 +121,9 @@ export default function Education() {
   }
 
   function validate() {
+    if(education.length){
+      return true;
+    }
     if (
       formData.institution === "" ||
       formData.course === "" ||
@@ -132,13 +132,6 @@ export default function Education() {
       return false;
     }
     return true;
-  }
-
-  function navCheck() {
-    if (validate() || education.length !== 0) {
-      return true;
-    }
-    return false;
   }
 
   function saveEdit() {
@@ -174,12 +167,12 @@ export default function Education() {
         <Link to="/resumeform/profile" style={{ textDecoration: "none" }}>
           <button>BACK</button>
         </Link>
-        {validate && (
+        {validate() && (
           <button className="next" onClick={previewEducation}>
             NEXT
           </button>
         )}
-        {!validate && (
+        {!validate() && (
           <Link to="/resumeform/experience" style={{ textDecoration: "none" }}>
             <button className="next">NEXT</button>
           </Link>
@@ -200,6 +193,10 @@ export default function Education() {
   }
 
   function previewEducation() {
+    if(validate() && !formData.institution){
+      setPreview((prev) => (prev = !prev));
+      return;
+    }
     if (validate()) {
       editingOn ? saveEdit() : addEducation();
     }
@@ -210,7 +207,7 @@ export default function Education() {
     const { institution, course, graduationYear, id, number } = props;
 
     return (
-      <div className="education-preview">
+      <div className="three-columns">
         <h4>{number}</h4>
         <div>
           <p>
@@ -247,7 +244,7 @@ export default function Education() {
   ));
 
   const educationItems = (
-    <fieldset className="educationPreview">
+    <fieldset>
       <legend>EDUCATION</legend>
       {educationList}
       <button className="addInputButton" onClick={previewEducation}>
@@ -266,17 +263,9 @@ export default function Education() {
       )}
       {preview && educationItems}
       {!preview && (
-        <EducationNavigation validate={navCheck()} />
+        <EducationNavigation />
       )}
       {preview && <PreviewNavigation />}
     </div>
   );
 }
-
-/*
- <FormNavigation
-        back="/resumeform/profile"
-        next="/resumeform/experience"
-        text="NEXT"
-      />
-*/
