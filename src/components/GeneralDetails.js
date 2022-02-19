@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addGeneralDetails, selectGeneralDetails
-} from "../resumeSlice";
+import { updateStorage } from "./localstorage";
+import { addGeneralDetails, selectGeneralDetails } from "../resumeSlice";
 import { Link } from "react-router-dom";
 
 function GeneralDetailsInput(props) {
@@ -96,25 +95,34 @@ function FormNavigation(props) {
         <button>BACK</button>
       </Link>
 
-      <Link
-        to="/resumeform/profile"
-        style={{
-          textDecoration: "none",
-        }}
-      >
-        <button className="next" onClick={props.addDetails}>NEXT</button>
-      </Link>
+      {props.validate() && (
+        <Link
+          to="/resumeform/profile"
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <button className="next" onClick={props.addDetails}>
+            NEXT
+          </button>
+        </Link>
+      )}
+
+      {!props.validate() && (
+        <button className="next" onClick={props.addDetails}>
+          NEXT
+        </button>
+      )}
     </div>
   );
 }
 
 export default function GeneralDetails() {
-
-  const generalDetails = useSelector(selectGeneralDetails)
+  const generalDetails = useSelector(selectGeneralDetails);
 
   React.useEffect(() => {
-    setFormData(generalDetails)
-  },[])
+    setFormData(generalDetails);
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -127,6 +135,12 @@ export default function GeneralDetails() {
     address: "",
     website: "",
   });
+
+  React.useEffect(() => {
+    let savedData = JSON.parse(localStorage.getItem("resumeState"));
+    let newData = { ...savedData, generalDetails: formData };
+    updateStorage(newData);
+  }, [formData]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -142,10 +156,18 @@ export default function GeneralDetails() {
     dispatch(addGeneralDetails(formData));
   }
 
+  function validate() {
+    if (!formData.firstName) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   return (
     <div className="general-details">
       <GeneralDetailsInput formData={formData} handleChange={handleChange} />
-      <FormNavigation addDetails={addDetails} />
+      <FormNavigation addDetails={addDetails} validate={validate} />
     </div>
   );
 }

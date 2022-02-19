@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateStorage } from "./localstorage";
 import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 import {
@@ -21,7 +22,7 @@ function ExperienceInput(props) {
   } = props;
 
   const responsibilityList = data.responsibilities.map((resp, index) => (
-    <li key={data.id + index} id={index} className="list-item">
+    <li key={nanoid()} id={index} className="list-item">
       {resp}
       <span>
         <i
@@ -120,6 +121,12 @@ export default function Experience() {
   });
 
   const [responsibility, setResponsibility] = React.useState("");
+
+  React.useEffect(() => {
+    let savedData = JSON.parse(localStorage.getItem("resumeState"));
+    let newData = {...savedData, eperience: experience}
+    updateStorage(newData)
+  },[experience])
 
   const [editingOn, setEditingOn] = React.useState(false);
 
@@ -246,7 +253,7 @@ export default function Experience() {
           </p>
           <ul>
             {responsibilities.map((responsibility, index) => (
-              <li key={id + responsibility} id={index}>
+              <li key={nanoid()} id={index}>
                 {responsibility}
               </li>
             ))}
@@ -266,7 +273,7 @@ export default function Experience() {
 
   const experienceList = experience.map((exp, index) => (
     <PreviewExperience
-      key={exp.id}
+      key={nanoid()}
       id={exp.id}
       role={exp.role}
       company={exp.company}

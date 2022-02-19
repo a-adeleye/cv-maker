@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateStorage } from "./localstorage";
 import { Link } from "react-router-dom";
 import typeOne from "../t1.jpg";
 import typeTwo from "../t2.jpg";
@@ -7,6 +8,7 @@ import typeThree from "../t3.jpg";
 import { chooseTemplate, selectTemplate } from "../resumeSlice";
 
 function FormNavigation() {
+  const template = useSelector(selectTemplate);
   return (
     <div className="formNavigation">
       <Link
@@ -17,14 +19,17 @@ function FormNavigation() {
       >
         <button>BACK</button>
       </Link>
-      <Link
+      {!template && 
+        <button className="next">NEXT</button>
+      }
+      {template && <Link
         to="/resumeform/generaldetails"
         style={{
           textDecoration: "none",
         }}
       >
         <button className="next">NEXT</button>
-      </Link>
+      </Link>}
     </div>
   );
 }
@@ -37,6 +42,12 @@ export default function Templates() {
     const { id, name } = e.target;
     dispatch(chooseTemplate(id || name));
   }
+
+  React.useEffect(() => {
+    let savedData = JSON.parse(localStorage.getItem("resumeState"));
+    let newData = {...savedData, template: template}
+    updateStorage(newData)
+  },[template])
 
   const activeStyle = { color: "#fbec5c", fontWeight: "bold" };
 
@@ -90,3 +101,4 @@ export default function Templates() {
     </section>
   );
 }
+

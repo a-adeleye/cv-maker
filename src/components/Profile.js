@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateStorage } from "./localstorage";
 import { Link } from "react-router-dom";
-import { addProfile, selectProfile} from "../resumeSlice";
+import { addProfile, selectProfile } from "../resumeSlice";
 
 export default function Profile() {
   const profile = useSelector(selectProfile);
@@ -10,19 +11,24 @@ export default function Profile() {
   const [data, setData] = React.useState("");
 
   function handleChange(e) {
-    setData(prev => prev = e.target.value);
+    setData((prev) => (prev = e.target.value));
   }
 
   React.useEffect(() => {
-    setData(profile)
-  },[])
+    setData(profile);
+  }, []);
+
+  React.useEffect(() => {
+    let savedData = JSON.parse(localStorage.getItem("resumeState"));
+    let newData = { ...savedData, profile: data };
+    updateStorage(newData);
+  }, [data]);
 
   function add() {
     dispatch(addProfile(data));
-    console.log(profile)
   }
 
-  function ProfileNavigation() {
+  function ProfileNavigation(props) {
     return (
       <div className="formNavigation">
         <Link
@@ -32,11 +38,28 @@ export default function Profile() {
           <button>BACK</button>
         </Link>
 
-        <Link to="/resumeform/education" style={{ textDecoration: "none" }}>
-          <button className="next" onClick={add}>NEXT</button>
-        </Link>
+        {!props.validate() && (
+          <button className="next" onClick={add}>
+            NEXT
+          </button>
+        )}
+
+        {props.validate() && (
+          <Link to="/resumeform/education" style={{ textDecoration: "none" }}>
+            <button className="next" onClick={add}>
+              NEXT
+            </button>
+          </Link>
+        )}
       </div>
     );
+  }
+
+  function validate() {
+    if (!data) {
+      return false;
+    }
+    return true;
   }
 
   return (
@@ -53,7 +76,7 @@ export default function Profile() {
           onChange={handleChange}
         ></textarea>
       </fieldset>
-      <ProfileNavigation />
+      <ProfileNavigation validate={validate} />
     </div>
   );
 }

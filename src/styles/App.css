@@ -323,11 +323,12 @@ ul {
 .list-item {
   font-size: 0.7em;
   color: #09203f;
-  height: 1.5em;
+  min-height: 1.5em;
   border-bottom: 1px solid #b1b1b1;
   display: flex;
   align-items: center;
   margin-top: 0.5em;
+  text-align: left;
 }
 
 .list-item:hover {

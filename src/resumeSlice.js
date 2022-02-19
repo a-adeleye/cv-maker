@@ -1,14 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { downloadFromStorage} from "./components/localstorage";
 
-const initialState = {
-  template: "",
-  generalDetails: {},
-  profile: "",
-  education: [],
-  experience: [],
-  skills: [],
-  status: "idle",
-};
+
+const initialState = downloadFromStorage();
+
+console.log(initialState);
 
 export const resumeSlice = createSlice({
   name: "resume",

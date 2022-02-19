@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateStorage } from "./localstorage";
 import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { addSkills, selectSkills, deleteSkills } from "../resumeSlice";
@@ -23,6 +24,12 @@ export default function Skills() {
       reset();
     }
   }
+
+  React.useEffect(() => {
+    let savedData = JSON.parse(localStorage.getItem("resumeState"));
+    let newData = {...savedData, skills: skills}
+    updateStorage(newData)
+  },[skills])
 
   function deleteSkill(e) {
     dispatch(deleteSkills(e.target.id));
@@ -59,7 +66,7 @@ export default function Skills() {
   }
 
   const skillList = skills.map((skill) => (
-    <li key={skill.id} id={skill.id} className="list-item">
+    <li key={nanoid()} id={skill.id} className="list-item">
       {skill.text}
       <span id={skill.id} onClick={deleteSkill}>
         <i className="fas fa-trash"></i>

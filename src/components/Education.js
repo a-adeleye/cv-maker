@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateStorage } from "./localstorage";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
 import { selectEducation, addEducations, saveEditedEducation, deleteEducations} from "../resumeSlice";
@@ -83,6 +84,12 @@ export default function Education() {
 
   const [editingOn, setEditingOn] = React.useState(false);
   const [preview, setPreview] = React.useState(false);
+
+  React.useEffect(() => {
+    let savedData = JSON.parse(localStorage.getItem("resumeState"));
+    let newData = {...savedData, education: education}
+    updateStorage(newData)
+  },[education])
 
   function deleteEducation(e) {
     dispatch(deleteEducations(e.target.id))
