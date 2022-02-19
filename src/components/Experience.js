@@ -225,8 +225,6 @@ export default function Experience() {
     });
   }
 
-  console.log(formData.responsibilities);
-
   const [preview, setPreview] = React.useState(false);
 
   function PreviewExperience(props) {
@@ -290,8 +288,6 @@ export default function Experience() {
       </fieldset>
     );
   }
-
-  console.log(experience);
 
   function ExperienceNavigation() {
     return (

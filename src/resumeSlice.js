@@ -68,12 +68,6 @@ export const resumeSlice = createSlice({
       );
     },
 
-   /* deleteResponsibilities: (state, action) => {
-        let newArray = state.experience.responsibilities;
-        newArray.splice(action.payload, 1);
-        state.experience = [...state]
-    },*/
-
     saveEditedExperience: (state, action) => {
       state.experience = state.experience.map((exp) =>
         exp.id === action.payload.id
@@ -93,11 +87,6 @@ export const resumeSlice = createSlice({
 
     addGeneralDetails: (state, action) => {
       state.generalDetails = action.payload;
-    },
-
-    editGeneralDetails: (state, action) => {
-        const {payload} = action;
-      state.generalDetails = {...state.generalDetails, ...payload}
     },
 
   },

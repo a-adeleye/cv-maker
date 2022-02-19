@@ -6,25 +6,28 @@ import { selectTemplate, selectProfile, selectEducation, selectSkills, selectExp
 
 // LEFT SECTION
 
-function Address(props) {
+
+function Address() {
+  const generalDetails = useSelector(selectGeneralDetails);
   return (
     <section className="address-section">
       <div className="address--column">
         <i className="fas fa-map-marker-alt"></i>
       </div>
       <div className="address">
-        <p>{props.address}</p>
+        <p>{generalDetails.address}</p>
       </div>
     </section>
   );
 }
 
-function Name(props) {
+function Name() {
+  const generalDetails = useSelector(selectGeneralDetails);
   return (
     <section className="name-section">
-      <h1 className="name">{props.name}</h1>
+      <h1 className="name">{`${generalDetails.firstName} ${generalDetails.lastName}`}</h1>
       <p className="title">
-        <span>&#9871;</span> {props.title}
+        <span>&#9871;</span> {generalDetails.title}
       </p>
     </section>
   );
@@ -98,20 +101,28 @@ function Certifications() {
 // RIGHT SECTION
 
 function Contact() {
+  const generalDetails = useSelector(selectGeneralDetails);
+
+  function generateInitials() {
+    let firstNameInitial = generalDetails.firstName.charAt(0);
+    let secondNameInitial = generalDetails.lastName.charAt(0);
+    return `${firstNameInitial}${secondNameInitial}`
+  }
+
   return (
     <section className="contact-section">
       <div className="initials">
-        <h4>SA</h4>
+        <h4>{generateInitials()}</h4>
       </div>
       <div className="contact-details">
         <p>
-          <i className="fas fa-envelope"></i>adeleyeadeyemib@gmail.com
+          <i className="fas fa-envelope"></i>{generalDetails.email}
         </p>
         <p>
-          <i className="fas fa-mobile"></i> 0588121250
+          <i className="fas fa-mobile"></i> {generalDetails.phone}
         </p>
         <p>
-          <i className="fas fa-globe"></i>www.adeleyeadeyemi.com
+          <i className="fas fa-globe"></i>{generalDetails.website}
         </p>
       </div>
     </section>
@@ -198,7 +209,7 @@ function Experience() {
 export default function Preview() {
 
 const templateName = useSelector(selectTemplate);
-const generalDetails = useSelector(selectGeneralDetails);
+
 const profile = useSelector(selectProfile);
 const education = useSelector(selectEducation);
 const skills = useSelector(selectSkills);
@@ -209,12 +220,12 @@ console.log(profile)
 console.log(skills)
 console.log(education)
 console.log(experience)
-console.log(generalDetails)
+//console.log(generalDetails)
 
   return (
     <div className="preview">
       <div className="left">
-        <Address address = "Sports city, Dubai"/>
+        <Address />
         <Name name={"name"} title="Fullstack developer"/>
         <Education />
         <Skills />
