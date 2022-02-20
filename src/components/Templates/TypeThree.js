@@ -14,6 +14,15 @@ import { nanoid } from "nanoid";
 // TOP SECTION
 
 function Top() {
+
+  const generalDetails = useSelector(selectGeneralDetails);
+
+  function generateInitials() {
+    let firstNameInitial = generalDetails.firstName.charAt(0);
+    let secondNameInitial = generalDetails.lastName.charAt(0);
+    return `${firstNameInitial}${secondNameInitial}`;
+  }
+
   return (
     <div className="top">
       <div className="contact-title">
@@ -21,7 +30,7 @@ function Top() {
       </div>
       <div className="top-inner">
         <div className="t3-initials">
-          <h4>JD</h4>
+          <h4>{generateInitials()}</h4>
         </div>
       </div>
       <Name />
@@ -33,7 +42,7 @@ function Name() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
     <section className="t3-name">
-      <h2>{generalDetails.lastName}</h2>
+      <h2 className="t3-titles">{generalDetails.lastName}</h2>
       <h1>{generalDetails.firstName}</h1>
       <p className="t3-title">{generalDetails.title}</p>
     </section>
@@ -60,7 +69,7 @@ function Middle() {
         </p>
       </div>
       <div className="t3-profile">
-        <h2>PROFILE</h2>
+        <h2 className="t3-titles">PROFILE</h2>
         <p>{profile}</p>
       </div>
     </div>
@@ -94,7 +103,7 @@ function Education() {
 
   return (
     <section className="t3-education-section">
-      <h2>EDUCATION</h2>
+      <h2 className="t3-titles">EDUCATION</h2>
       {educationList}
     </section>
   );
@@ -107,7 +116,7 @@ function Skills() {
   ));
   return (
     <section className="t3-skills-section">
-      <h2>SKILLS</h2>
+      <h2 className="t3-titles">SKILLS</h2>
       <div className="skill-details">
         <ul>{skillsList}</ul>
       </div>
@@ -134,7 +143,7 @@ function Experience() {
   ));
   return (
     <section className="t3-experience">
-      <h2>EXPERIENCE</h2>
+      <h2 className="t3-titles">EXPERIENCE</h2>
       {experienceList}
     </section>
   );
@@ -153,7 +162,7 @@ function Certifications() {
   ));
   return (
     <section className="certifications-section">
-      <h2>CERTIFICATIONS</h2>
+      <h2 className="t3-titles">CERTIFICATIONS</h2>
       {certificationList}
     </section>
   );

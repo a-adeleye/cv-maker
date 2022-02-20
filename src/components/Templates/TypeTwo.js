@@ -18,12 +18,12 @@ function Top() {
   return (
     <section className="t2-top">
       <div className="t2-name-box">
-        <h2>
+        <h2 className="t2-titles">
           <span className="orange"> {generalDetails.firstName}</span>{" "}
           {generalDetails.lastName}
         </h2>
       </div>
-      <p className="typeThree-title">{generalDetails.title}</p>
+      <p className="">{generalDetails.title}</p>
     </section>
   );
 }
@@ -39,13 +39,13 @@ function Left() {
   );
 }
 
-function Right(){
-    return(
-        <div className="t2-right">
-            <Profile />
-            <Experience />
-        </div>
-    )
+function Right() {
+  return (
+    <div className="t2-right">
+      <Profile />
+      <Experience />
+    </div>
+  );
 }
 
 function Profile() {
@@ -53,7 +53,7 @@ function Profile() {
 
   return (
     <div className="t2-profile">
-      <h2>PROFILE</h2>
+      <h2 className="t2-titles">PROFILE</h2>
       <p>{profile}</p>
     </div>
   );
@@ -73,7 +73,7 @@ function Contact() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
     <div className="t2-contact">
-      <h2>CONTACT</h2>
+      <h2 className="t2-titles">CONTACT</h2>
       <p>
         <i className="fas fa-envelope"></i>
         {generalDetails.email}
@@ -102,7 +102,7 @@ function Education() {
 
   return (
     <section className="t2-education">
-      <h2>EDUCATION</h2>
+      <h2 className="t2-titles">EDUCATION</h2>
       {educationList}
     </section>
   );
@@ -115,7 +115,7 @@ function Skills() {
   ));
   return (
     <section>
-      <h2>SKILLS</h2>
+      <h2 className="t2-titles">SKILLS</h2>
       <div className="t2-skill-details">
         <ul>{skillsList}</ul>
       </div>
@@ -142,30 +142,30 @@ function Experience() {
   ));
   return (
     <section className="t2-experience">
-      <h2>EXPERIENCE</h2>
+      <h2 className="t2-titles">EXPERIENCE</h2>
       {experienceList}
     </section>
   );
 }
 
 function Certifications() {
-    const certifications = useSelector(selectCertification);
-    const certificationList = certifications.map((certification) => (
-      <div className="certification-details" key={nanoid()}>
-        <h5 className="certification-name">{certification.name}</h5>
-        <p className="certification-year">
-          {certification.achievedYear} {certification.expirationYear && "-"}{" "}
-          {certification.expirationYear}
-        </p>
-      </div>
-    ));
-    return (
-      <section className="certifications-section">
-        <h2>CERTIFICATIONS</h2>
-        {certificationList}
-      </section>
-    );
-  }
+  const certifications = useSelector(selectCertification);
+  const certificationList = certifications.map((certification) => (
+    <div className="certification-details" key={nanoid()}>
+      <h5 className="certification-name">{certification.name}</h5>
+      <p className="certification-year">
+        {certification.achievedYear} {certification.expirationYear && "-"}{" "}
+        {certification.expirationYear}
+      </p>
+    </div>
+  ));
+  return (
+    <section className="certifications-section">
+      <h2 className="t2-titles">CERTIFICATIONS</h2>
+      {certificationList}
+    </section>
+  );
+}
 
 export default function TypeThree() {
   return (

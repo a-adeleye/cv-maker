@@ -5,15 +5,60 @@
 }
 
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
-  grid-template-columns: auto 1fr;
-  font-size: 0.8em;
+  grid-template-columns: 2.35fr 5fr;
+  font-size: 1.1em;
+}
+
+.t1-left {
+  padding: 0 2em;
+  background-color: #aba9a8;
+  min-height: 120vh;
+}
+
+.t1-address {
+  display: flex;
+  align-items: flex-end;
+}
+
+.address {
+  align-self: flex-end;
+  margin: auto auto 0.8em 0.8em;
+}
+
+.address--column {
+  position: relative;
+  background-color: #2b2b2b;
+  width: 1.5em;
+  height: 8em;
+  color: #ffffff;
+  text-align: center;
+}
+
+.address--column i {
+  position: absolute;
+  inset: auto 0 1em 0;
+}
+
+.t1-name {
+  gap: 0.5em;
+  text-transform: uppercase;
+  color: #2b2b2b;
+}
+
+.t1-titles {
+  letter-spacing: 0.2em;
+  margin-top: 1em;
+}
+
+.education-details h4 {
+  font-size: 0.9em;
 }
 
 .right {
   padding: 2em 2em;
-  min-height: 60em;
+  min-height: 120vh;
   text-align: justify;
   justify-content: flex-start;
 }
@@ -46,7 +91,7 @@
   font-size: 2.5em;
 }
 
-.profile-section {
+.t1-profile {
   font-size: 1.2em;
 }
 
@@ -67,59 +112,12 @@
   margin-left: 1em;
 }
 
-.left {
-  padding: 0 2em;
-  background-color: #aba9a8;
-  min-height: 60em;
-  width: 23em;
-}
-
-.address-section {
-  display: flex;
-  align-items: flex-end;
-}
-
-.address--column {
-  position: relative;
-  background-color: #2b2b2b;
-  width: 1.5em;
-  height: 8em;
-  color: #ffffff;
-  text-align: center;
-}
-
-.address--column i {
-  position: absolute;
-  inset: auto 0 1em 0;
-}
-
-.address {
-  align-self: flex-end;
-  margin: auto auto 0.8em 0.8em;
-}
-
-.name-section {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5em;
-  text-transform: uppercase;
-  color: #2b2b2b;
-  text-align: left;
-}
-
 .name {
   font-size: 2em;
 }
-h2 {
-  font-size: 1.3em;
-}
 
-.education-section,
-.skills-section,
-.certification-section,
-.profile-section,
-.experience-section {
-  margin: 1.5em auto;
+.t1-titles {
+  font-size: 1.3em;
 }
 
 .education-details {
@@ -127,11 +125,6 @@ h2 {
   margin: 1em auto;
 }
 
-.education-year,
-.certification-year,
-.experience-year {
-  font-size: 1em;
-}
 .institution-name {
   text-transform: capitalize;
   margin: 0.2em 0;
@@ -143,7 +136,7 @@ h2 {
 
 .skill-details {
   margin-top: 1em;
-  padding-left: 1em;
+  margin-left: 1em;
 }
 
 .skill-details li,

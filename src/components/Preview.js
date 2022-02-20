@@ -6,15 +6,24 @@ import TypeOne from "./Templates/TypeOne";
 import TypeTwo from "./Templates/TypeTwo";
 import TypeThree from "./Templates/TypeThree";
 import { Link } from "react-router-dom";
-import { chooseTemplate, selectTemplate } from "../resumeSlice";
+import { chooseTemplate, selectTemplate, selectGeneralDetails } from "../resumeSlice";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 export default function Preview() {
   const template = useSelector(selectTemplate);
+  const generalDetails = useSelector(selectGeneralDetails);
   const dispatch = useDispatch();
 
   function setActive(e) {
     const { name } = e.target;
     dispatch(chooseTemplate(name));
+  }
+
+  function screenshot() {
+    html2canvas(document.querySelector(".resume")).then(function(canvas) {
+      document.body.appendChild(canvas);
+  });
   }
 
   React.useEffect(() => {
@@ -24,6 +33,23 @@ export default function Preview() {
   }, [template]);
 
   function FormNavigation() {
+    function getPDF() {
+      let resume = document.querySelector(".resume");
+      html2canvas(resume).then((canvas) => {
+        const myImage = canvas.toDataURL("image/png");
+  
+        if (canvas.width > canvas.height) {
+          var pdf = new jsPDF("l", "pt", [canvas.width - 250, canvas.height - 300], "a4"); //
+        } else {
+          var pdf = new jsPDF("p", "pt", [canvas.height - 300, canvas.width - 250], "a4"); //
+        }
+
+        pdf.addImage(myImage, "png", 0, 0); 
+        pdf.save(`${generalDetails.name}.pdf`);
+        //screenshot();
+      });
+    }
+
     return (
       <div className="formNavigation">
         <Link
@@ -35,7 +61,9 @@ export default function Preview() {
           <button>BACK</button>
         </Link>
 
-        <button className="next">DOWNLOAD</button>
+        <button className="next" onClick={getPDF}>
+          DOWNLOAD
+        </button>
       </div>
     );
   }

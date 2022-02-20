@@ -13,10 +13,22 @@ import { nanoid } from "nanoid";
 
 // LEFT SECTION
 
+function Left() {
+  return (
+    <section className="t1-left">
+      <Address />
+      <Name />
+      <Education />
+      <Skills />
+      <Certifications />
+    </section>
+  );
+}
+
 function Address() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
-    <section className="address-section">
+    <section className="t1-address">
       <div className="address--column">
         <i className="fas fa-map-marker-alt"></i>
       </div>
@@ -30,7 +42,7 @@ function Address() {
 function Name() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
-    <section className="name-section">
+    <section className="t1-name">
       <h1 className="name">{`${generalDetails.firstName} ${generalDetails.lastName}`}</h1>
       <p className="title">
         <span>&#9871;</span> {generalDetails.title}
@@ -50,8 +62,8 @@ function Education() {
   ));
 
   return (
-    <section className="education-section">
-      <h2>EDUCATION</h2>
+    <section className="t1-education">
+      <h2 className="t1-titles">EDUCATION</h2>
       <hr></hr>
       {educationList}
     </section>
@@ -65,7 +77,7 @@ function Skills() {
   ));
   return (
     <section className="skills-section">
-      <h2>SKILLS</h2>
+      <h2 className="t1-titles">SKILLS</h2>
       <hr></hr>
       <div className="skill-details">
         <ul>{skillsList}</ul>
@@ -87,7 +99,7 @@ function Certifications() {
   ));
   return (
     <section className="certifications-section">
-      <h2>CERTIFICATIONS</h2>
+      <h2 className="t1-titles">CERTIFICATIONS</h2>
       <hr></hr>
       {certificationList}
     </section>
@@ -95,6 +107,16 @@ function Certifications() {
 }
 
 // RIGHT SECTION
+
+function Right() {
+  return (
+    <section className="right">
+      <Contact />
+      <Profile />
+      <Experience />
+    </section>
+  );
+}
 
 function Contact() {
   const generalDetails = useSelector(selectGeneralDetails);
@@ -130,8 +152,8 @@ function Contact() {
 function Profile() {
   const profile = useSelector(selectProfile);
   return (
-    <section className="profile-section">
-      <h2>PROFILE</h2>
+    <section className="t1-profile">
+      <h2 className="t1-titles">PROFILE</h2>
       <hr></hr>
       <p>{profile}</p>
     </section>
@@ -157,7 +179,7 @@ function Experience() {
   ));
   return (
     <section className="experience-section">
-      <h2>EXPERIENCE</h2>
+      <h2 className="t1-titles">EXPERIENCE</h2>
       <hr></hr>
 
       {experienceList}
@@ -169,19 +191,8 @@ export default function TypeOne() {
   return (
     <div className="resume">
       <div className="container">
-        <div className="left">
-          <Address />
-          <Name name={"name"} title="Fullstack developer" />
-          <Education />
-          <Skills />
-          <Certifications />
-        </div>
-
-        <div className="right">
-          <Contact />
-          <Profile />
-          <Experience />
-        </div>
+        <Left />
+        <Right />
       </div>
     </div>
   );
