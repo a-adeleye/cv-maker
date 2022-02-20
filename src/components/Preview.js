@@ -23,7 +23,7 @@ export default function Preview() {
   /*function screenshot() {
     html2canvas(document.querySelector(".resume")).then(function(canvas) {
       document.body.appendChild(canvas);
-  });
+  })
   }
 */
   React.useEffect(() => {

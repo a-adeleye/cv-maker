@@ -154,6 +154,7 @@ function Experience() {
         break;
       case 7:
         month = 'JUL';
+        break;
       case 8:
         month = 'AUG';
         break;

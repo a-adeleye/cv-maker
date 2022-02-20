@@ -7,7 +7,7 @@ export default function Header() {
   
   return (
     <header>
-      <i class="fas fa-bars" onClick={toggleNav}></i>
+      <i className="fas fa-bars" onClick={toggleNav}></i>
     </header>
   );
 }

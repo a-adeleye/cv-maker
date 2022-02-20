@@ -98,57 +98,7 @@ function Certifications() {
     </div>
   ));
 
-  function formatDate(date) {
-    if(date === 'present'){
-      return date;
-    }
-    const dateObj = new Date(date);
-    const monthNumber = dateObj.getUTCMonth() + 1;
-    const year = dateObj.getUTCFullYear();
-    let month;
-    switch(monthNumber){
-      case 1:
-        month = 'JAN';
-        break;
-      case 2:
-        month = 'FEB';
-        break;
-      case 3:
-        month = 'MAR';
-        break;
-      case 4:
-        month = 'APR';
-        break;
-      case 5:
-        month = 'MAY';
-        break;
-      case 6:
-        month = 'JUN';
-        break;
-      case 7:
-        month = 'JUL';
-      case 8:
-        month = 'AUG';
-        break;
-      case 9:
-        month = 'SEP';
-        break;
-      case 10:
-        month = 'OCT';
-        break;
-      case 11:
-        month = 'SEP';
-        break;
-      case 12:
-        month = 'DEC';
-        break;
-      default:
-        month = 'MON';
-
-    }
-    return `${month} ${year}`
-  }
-  
+ 
   return (
     <section className="certifications-section">
       <h2 className="t1-titles">CERTIFICATIONS</h2>
@@ -244,6 +194,7 @@ function Experience() {
         break;
       case 7:
         month = 'JUL';
+        break;
       case 8:
         month = 'AUG';
         break;
