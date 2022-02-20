@@ -213,6 +213,10 @@ fieldset {
   background-color: #fbec5c;
 }
 
+.next:hover {
+  background-color: #fde400;
+}
+
 legend {
   font-weight: 700;
   font-size: larger;
@@ -357,6 +361,30 @@ ul {
   background-color: #ffffff;
   margin-bottom: 2em;
   font-size: 0.7em;
+}
+
+.previewNavigation {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.buttons {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.secondary-button {
+  height: 3em;
+  font-size: 1em;
+  padding: 1em 2em;
+  width: 11em;
+  border-bottom: 2px solid #819fb67a;
+  background: none;
 }
 
 @media only screen and (max-width: 795px) {
