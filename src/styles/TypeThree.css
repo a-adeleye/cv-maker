@@ -19,7 +19,7 @@
 
 .top:before {
   content: "";
-  width: 0.1em;
+  width: 0.06em;
   height: 40%;
   top: 0;
   left: 32%;
