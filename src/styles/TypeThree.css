@@ -7,6 +7,7 @@
 .resume {
   display: flex;
   flex-direction: column;
+  padding-bottom: 3em;
 }
 
 .top {
@@ -27,7 +28,7 @@
   z-index: 1;
 }
 
-.typeThree--initials {
+.t3-initials {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,12 +41,12 @@
   margin-left: 1em;
 }
 
-.typeThree--initials h4 {
+.t3-initials h4 {
   font-size: 3.5em;
   color: #ffffff;
 }
 
-.typeThree-name-section {
+.t3-name {
   width: 70%;
   position: absolute;
   left: 30%;
@@ -54,15 +55,15 @@
   letter-spacing: 0.4em;
 }
 
-.typeThree-name-section h1 {
+.t3-name h1 {
   font-size: 3em;
 }
 
-.typeThree-name-section h2 {
+.t3-name h2 {
   font-size: 2em;
 }
 
-.typeThree-name-section p {
+.t3-name p {
   margin-top: 1em;
 }
 
@@ -89,97 +90,94 @@
 }
 
 .middle {
-  min-height: 25vh;
+  min-height: 12em;
   width: 100%;
-  position: relative;
+  display: grid;
+  grid-template-columns: 2.35fr 5fr;
 }
 
-.middle:before {
-  content: "";
-  width: 0.1em;
-  height: 85%;
-  top: 8%;
-  left: 32%;
-  position: absolute;
-  background-color: #000000;
-  z-index: 1;
+.t3-profile {
+  width: 100%;
+  border-left: 1px solid #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 3em;
+  line-height: 1.5;
 }
 
-.typeThree-profile {
-  width: 70%;
-  position: absolute;
-  top: 0;
-  left: 30%;
-  padding: 2em 3em;
-}
-
-.typeThree-profile h2 {
+h2 {
   letter-spacing: 0.4em;
 }
 
-.typeThree-profile p {
+.t3-profile p {
   font-size: 1.3em;
 }
 
-.typeThree-contact {
-  width: 30%;
-  position: absolute;
-  padding-left: 3em;
-  top: 50%;
-  transform: translateY(-50%);
+.t3-contact {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1em;
+  padding-left: 3em;
+  font-size: 1.2em;
 }
 
-.typeThree-contact i {
+.t3-contact i {
   margin-right: 1em;
 }
 
 .bottom {
-  min-height: 553px;
+  display: grid;
+  grid-template-columns: 2.35fr 5fr;
   width: 100%;
-  position: relative;
+  align-items: flex-start;
+  margin-top: 2em;
 }
 
-.bottom:before {
-  content: "";
-  width: 0.1em;
-  height: 85%;
-  top: 8%;
-  left: 32%;
-  position: absolute;
-  background-color: #000000;
-  z-index: 1;
+.t3-left,
+.t3-right {
+  width: 100%;
+  display: grid;
+  gap: 1em;
 }
 
-.typeThree-experience {
-  width: 70%;
-  position: absolute;
-  top: 0;
-  left: 30%;
-  padding: 2em 3em;
-}
-
-.typeThree-experience h2 {
-  letter-spacing: 0.4em;
-}
-
-.typeThree-experience h4 {
-  font-size: 1.4em;
-}
-
-.typeThree-experience p {
-  font-size: 1.3em;
-}
-
-.typeThree-left {
-  width: 30%;
-  position: absolute;
+.t3-left {
   padding-left: 3em;
-  top: 50%;
-  transform: translateY(-50%);
+}
+
+.t3-experience {
+  width: 100%;
+  border-left: 1px solid #000000;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  justify-content: center;
+  padding: 0 3em;
+  line-height: 1.5;
+}
+
+.t3-list {
+  padding-left: 1em;
+  margin-top: 0.5em;
+}
+
+.t3-role {
+  margin-top: 0.6em;
+}
+
+.t3-company {
+  display: inline-block;
+}
+
+.t3-education {
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  margin-top: 1em;
+}
+
+h4 {
+  font-size: 1.2em;
 }

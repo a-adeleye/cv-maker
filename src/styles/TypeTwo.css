@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.resume {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.typeTwo-top {
+  height: 25vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  background: linear-gradient(to bottom, #ffffff 50%, #f2f2f2 50%);
+  padding: 8em;
+}
+
+.orange {
+  color: #ffb862;
+}
+
+.typeTwo-name-box {
+  width: 100%;
+  height: max-content;
+  padding: 1em 2em;
+  background-color: #ffffff;
+  border: 2px solid #ffb862;
+  text-align: center;
+  margin-top: 6em;
+}
+
+.typeTwo-name-box h2 {
+  font-size: 3.5em;
+}
+
+.typeTwo-top p {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+.typeTwo-bottom {
+  display: flex;
+  width: 100%;
+  margin-top: 2em;
+  padding-bottom: 3em;
+}
+
+.typeTwo-left {
+  width: 35%;
+  height: 650px;
+  padding: 0 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  font-size: 1.2em;
+  justify-content: flex-start;
+}
+
+.typeTwo-contact {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 1.1em;
+}
+
+.typeTwo-education-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.typeTwo-education {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1em;
+}
+
+.typeTwo-education h2 {
+  letter-spacing: 0.2em;
+}
+
+.typeTwo-skill-details {
+  padding: 1em;
+  font-size: 1em;
+}
+
+.typeTwo-skill-details li {
+  margin-top: 0.3em;
+}
+
+.typeTwo-contact h2 {
+  letter-spacing: 0.2em;
+}
+
+.typeThree-profile p {
+  font-size: 1.3em;
+}
+
+.typeTwo-contact i {
+  margin-right: 1em;
+}
+
+.typeTwo-right {
+  width: 68%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 2em;
+  border-left: 2px solid #ffb862;
+}
+
+.typeTwo-profile {
+  width: 100%;
+  font-size: 1.4em;
+}
+
+.typeTwo-profile h2 {
+  letter-spacing: 0.2em;
+}
+
+.typeTwo-experience {
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+.typeTwo-experience h2 {
+  letter-spacing: 0.2em;
+  font-size: 1.4em;
+}
+
+.typeTwo-experience h4 {
+  font-size: 1.2em;
+}
+
+.typeTwo-experience li {
+  margin-top: 0.5em;
+}

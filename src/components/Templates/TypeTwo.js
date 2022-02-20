@@ -1,50 +1,97 @@
 import React from "react";
-import "../../styles/TypeOne.css";
-import { useSelector, useDispatch } from "react-redux";
+import "../../styles/TypeTwo.css";
+import { useSelector } from "react-redux";
 import {
-  selectTemplate,
   selectProfile,
   selectEducation,
   selectSkills,
   selectExperience,
-  selectCertification,
   selectGeneralDetails,
 } from "../../resumeSlice";
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
 
-// LEFT SECTION
+// TOP SECTION
 
-function Address() {
+function Top() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
-    <section className="address-section">
-      <div className="address--column">
-        <i className="fas fa-map-marker-alt"></i>
+    <section className="typeTwo-top">
+      <div className="typeTwo-name-box">
+        <h2>
+          <span className="orange"> {generalDetails.firstName}</span>{" "}
+          {generalDetails.lastName}
+        </h2>
       </div>
-      <div className="address">
-        <p>{generalDetails.address}</p>
-      </div>
+      <p className="typeThree-title">{generalDetails.title}</p>
     </section>
   );
 }
 
-function Name() {
+function Left() {
+  return (
+    <section className="typeTwo-left">
+      <Contact />
+      <Education />
+      <Skills />
+    </section>
+  );
+}
+
+function Right(){
+    return(
+        <div className="typeTwo-right">
+            <Profile />
+            <Experience />
+        </div>
+    )
+}
+
+function Profile() {
+  const profile = useSelector(selectProfile);
+
+  return (
+    <div className="typeTwo-profile">
+      <h2>PROFILE</h2>
+      <p>{profile}</p>
+    </div>
+  );
+}
+
+function Bottom() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
-    <section className="name-section">
-      <h1 className="name">{`${generalDetails.firstName} ${generalDetails.lastName}`}</h1>
-      <p className="title">
-        <span>&#9871;</span> {generalDetails.title}
+    <div className="typeTwo-bottom">
+      <Left />
+      <Right />
+    </div>
+  );
+}
+
+function Contact() {
+  const generalDetails = useSelector(selectGeneralDetails);
+  return (
+    <div className="typeTwo-contact">
+      <h2>CONTACT</h2>
+      <p>
+        <i className="fas fa-envelope"></i>
+        {generalDetails.email}
       </p>
-    </section>
+      <p>
+        <i className="fas fa-map-marker-alt"></i>
+        {generalDetails.address}
+      </p>
+      <p>
+        <i className="fas fa-phone"></i>
+        {generalDetails.phone}
+      </p>
+    </div>
   );
 }
 
 function Education() {
   const education = useSelector(selectEducation);
   const educationList = education.map((edu) => (
-    <div className="education-details" key={nanoid()}>
+    <div className="typeTwo-education-details" key={nanoid()}>
       <h4 className="course-name">{edu.course}</h4>
       <h4 className="institution-name">{edu.institution}</h4>
       <p className="education-year">{edu.graduationYear}</p>
@@ -52,9 +99,8 @@ function Education() {
   ));
 
   return (
-    <section className="education-section">
+    <section className="typeTwo-education">
       <h2>EDUCATION</h2>
-      <hr></hr>
       {educationList}
     </section>
   );
@@ -66,76 +112,11 @@ function Skills() {
     <li key={nanoid()}>{skill.text}</li>
   ));
   return (
-    <section className="skills-section">
+    <section>
       <h2>SKILLS</h2>
-      <hr></hr>
-      <div className="skill-details">
+      <div className="typeTwo-skill-details">
         <ul>{skillsList}</ul>
       </div>
-    </section>
-  );
-}
-
-function Certifications() {
-  const certifications = useSelector(selectCertification);
-  const certificationList = certifications.map((certification) => (
-    <div className="certification-details" key={nanoid()}>
-      <h5 className="certification-name">{certification.name}</h5>
-      <p className="certification-year">
-        {certification.achievedYear} {certification.expirationYear && "-"}{" "}
-        {certification.expirationYear}
-      </p>
-    </div>
-  ));
-  return (
-    <section className="certifications-section">
-      <h2>CERTIFICATIONS</h2>
-      <hr></hr>
-      {certificationList}
-    </section>
-  );
-}
-
-// RIGHT SECTION
-
-function Contact() {
-  const generalDetails = useSelector(selectGeneralDetails);
-
-  function generateInitials() {
-    let firstNameInitial = generalDetails.firstName.charAt(0);
-    let secondNameInitial = generalDetails.lastName.charAt(0);
-    return `${firstNameInitial}${secondNameInitial}`;
-  }
-
-  return (
-    <section className="contact-section">
-      <div className="initials">
-        <h4>{generateInitials()}</h4>
-      </div>
-      <div className="contact-details">
-        <p>
-          <i className="fas fa-envelope"></i>
-          {generalDetails.email}
-        </p>
-        <p>
-          <i className="fas fa-mobile"></i> {generalDetails.phone}
-        </p>
-        <p>
-          <i className="fas fa-globe"></i>
-          {generalDetails.website}
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function Profile() {
-  const profile = useSelector(selectProfile);
-  return (
-    <section className="profile-section">
-      <h2>PROFILE</h2>
-      <hr></hr>
-      <p>{profile}</p>
     </section>
   );
 }
@@ -158,49 +139,18 @@ function Experience() {
     </div>
   ));
   return (
-    <section className="experience-section">
+    <section className="typeTwo-experience">
       <h2>EXPERIENCE</h2>
-      <hr></hr>
-
       {experienceList}
     </section>
   );
 }
 
-export default function TypeTwo() {
-  const template = useSelector(selectTemplate);
-  function FormNavigation() {
-    return (
-      <div className="formNavigation">
-        <Link
-          to="/resumeform/skills"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <button>BACK</button>
-        </Link>
-
-        <button className="next">DOWNLOAD</button>
-      </div>
-    );
-  }
-
+export default function TypeThree() {
   return (
     <div className="resume">
-      <div className="left">
-        <Address />
-        <Name name={"name"} title="Fullstack developer" />
-        <Education />
-        <Skills />
-        <Certifications />
-      </div>
-
-      <div className="right">
-        <Contact />
-        <Profile />
-        <Experience />
-      </div>
+      <Top />
+      <Bottom />
     </div>
   );
 }

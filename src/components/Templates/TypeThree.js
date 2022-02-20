@@ -19,7 +19,7 @@ function Top() {
         <strong>CONTACT</strong>
       </div>
       <div className="top-inner">
-        <div className="typeThree--initials">
+        <div className="t3-initials">
           <h4>JD</h4>
         </div>
       </div>
@@ -31,10 +31,10 @@ function Top() {
 function Name() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
-    <section className="typeThree-name-section">
+    <section className="t3-name">
       <h2>{generalDetails.lastName}</h2>
       <h1>{generalDetails.firstName}</h1>
-      <p className="typeThree-title">{generalDetails.title}</p>
+      <p className="t3-title">{generalDetails.title}</p>
     </section>
   );
 }
@@ -44,11 +44,7 @@ function Middle() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
     <div className="middle">
-      <div className="typeThree-profile">
-        <h2>PROFILE</h2>
-        <p>{profile}</p>
-      </div>
-      <div className="typeThree-contact">
+      <div className="t3-contact">
         <p>
           <i className="fas fa-envelope"></i>
           {generalDetails.email}
@@ -62,6 +58,10 @@ function Middle() {
           {generalDetails.phone}
         </p>
       </div>
+      <div className="t3-profile">
+        <h2>PROFILE</h2>
+        <p>{profile}</p>
+      </div>
     </div>
   );
 }
@@ -69,10 +69,13 @@ function Middle() {
 function Bottom() {
   return (
     <div className="bottom">
-      <Experience />
-      <div className="typeThree-left">
+      <div className="t3-left">
         <Education />
         <Skills />
+      </div>
+      <div className="t3-right">
+        <Experience />
+        
       </div>
     </div>
   );
@@ -81,7 +84,7 @@ function Bottom() {
 function Education() {
   const education = useSelector(selectEducation);
   const educationList = education.map((edu) => (
-    <div className="education-details" key={nanoid()}>
+    <div className="t3-education" key={nanoid()}>
       <h4 className="course-name">{edu.course}</h4>
       <h4 className="institution-name">{edu.institution}</h4>
       <p className="education-year">{edu.graduationYear}</p>
@@ -89,7 +92,7 @@ function Education() {
   ));
 
   return (
-    <section className="education-section">
+    <section className="t3-education-section">
       <h2>EDUCATION</h2>
       {educationList}
     </section>
@@ -102,7 +105,7 @@ function Skills() {
     <li key={nanoid()}>{skill.text}</li>
   ));
   return (
-    <section className="skills-section">
+    <section className="t3-skills-section">
       <h2>SKILLS</h2>
       <div className="skill-details">
         <ul>{skillsList}</ul>
@@ -114,14 +117,14 @@ function Skills() {
 function Experience() {
   const experience = useSelector(selectExperience);
   const experienceList = experience.map((exp) => (
-    <div className="experience-details" key={nanoid()}>
-      <h4 className="role">{exp.role}</h4>
-      <h4 className="company-name">{exp.company}</h4>
-      <p className="experience-date">
-        &nbsp; | <strong>{exp.fromDate}</strong> to{" "}
-        <strong>{exp.toDate}</strong>
-      </p>
-      <ul>
+    <div key={nanoid()}>
+      <h4 className="t3-role">{exp.role}</h4>
+      <h4 className="t3-company">{exp.company} </h4>
+      <span>
+       {" "} | <strong>{exp.fromDate}</strong> to <strong>{exp.toDate}</strong>
+      </span>
+
+      <ul className="t3-list">
         {exp.responsibilities.map((responsibility) => (
           <li key={nanoid()}>{responsibility}</li>
         ))}
@@ -129,14 +132,14 @@ function Experience() {
     </div>
   ));
   return (
-    <section className="typeThree-experience">
+    <section className="t3-experience">
       <h2>EXPERIENCE</h2>
       {experienceList}
     </section>
   );
 }
 
-export default function TypeThree() {
+export default function T3() {
   return (
     <div className="resume">
       <Top />
