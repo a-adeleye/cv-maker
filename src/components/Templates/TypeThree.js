@@ -1,43 +1,80 @@
 import React from "react";
-import "../../styles/TypeOne.css";
-import { useSelector, useDispatch } from "react-redux";
+import "../../styles/TypeThree.css";
+import { useSelector } from "react-redux";
 import {
-  selectTemplate,
   selectProfile,
   selectEducation,
   selectSkills,
   selectExperience,
-  selectCertification,
   selectGeneralDetails,
 } from "../../resumeSlice";
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
 
-// LEFT SECTION
+// TOP SECTION
 
-function Address() {
-  const generalDetails = useSelector(selectGeneralDetails);
+function Top() {
   return (
-    <section className="address-section">
-      <div className="address--column">
-        <i className="fas fa-map-marker-alt"></i>
+    <div className="top">
+      <div className="contact-title">
+        <strong>CONTACT</strong>
       </div>
-      <div className="address">
-        <p>{generalDetails.address}</p>
+      <div className="top-inner">
+        <div className="typeThree--initials">
+          <h4>JD</h4>
+        </div>
       </div>
-    </section>
+      <Name />
+    </div>
   );
 }
 
 function Name() {
   const generalDetails = useSelector(selectGeneralDetails);
   return (
-    <section className="name-section">
-      <h1 className="name">{`${generalDetails.firstName} ${generalDetails.lastName}`}</h1>
-      <p className="title">
-        <span>&#9871;</span> {generalDetails.title}
-      </p>
+    <section className="typeThree-name-section">
+      <h2>{generalDetails.lastName}</h2>
+      <h1>{generalDetails.firstName}</h1>
+      <p className="typeThree-title">{generalDetails.title}</p>
     </section>
+  );
+}
+
+function Middle() {
+  const profile = useSelector(selectProfile);
+  const generalDetails = useSelector(selectGeneralDetails);
+  return (
+    <div className="middle">
+      <div className="typeThree-profile">
+        <h2>PROFILE</h2>
+        <p>{profile}</p>
+      </div>
+      <div className="typeThree-contact">
+        <p>
+          <i className="fas fa-envelope"></i>
+          {generalDetails.email}
+        </p>
+        <p>
+          <i className="fas fa-map-marker-alt"></i>
+          {generalDetails.address}
+        </p>
+        <p>
+          <i className="fas fa-phone"></i>
+          {generalDetails.phone}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Bottom() {
+  return (
+    <div className="bottom">
+      <Experience />
+      <div className="typeThree-left">
+        <Education />
+        <Skills />
+      </div>
+    </div>
   );
 }
 
@@ -54,7 +91,6 @@ function Education() {
   return (
     <section className="education-section">
       <h2>EDUCATION</h2>
-      <hr></hr>
       {educationList}
     </section>
   );
@@ -68,74 +104,9 @@ function Skills() {
   return (
     <section className="skills-section">
       <h2>SKILLS</h2>
-      <hr></hr>
       <div className="skill-details">
         <ul>{skillsList}</ul>
       </div>
-    </section>
-  );
-}
-
-function Certifications() {
-  const certifications = useSelector(selectCertification);
-  const certificationList = certifications.map((certification) => (
-    <div className="certification-details" key={nanoid()}>
-      <h5 className="certification-name">{certification.name}</h5>
-      <p className="certification-year">
-        {certification.achievedYear} {certification.expirationYear && "-"}{" "}
-        {certification.expirationYear}
-      </p>
-    </div>
-  ));
-  return (
-    <section className="certifications-section">
-      <h2>CERTIFICATIONS</h2>
-      <hr></hr>
-      {certificationList}
-    </section>
-  );
-}
-
-// RIGHT SECTION
-
-function Contact() {
-  const generalDetails = useSelector(selectGeneralDetails);
-
-  function generateInitials() {
-    let firstNameInitial = generalDetails.firstName.charAt(0);
-    let secondNameInitial = generalDetails.lastName.charAt(0);
-    return `${firstNameInitial}${secondNameInitial}`;
-  }
-
-  return (
-    <section className="contact-section">
-      <div className="initials">
-        <h4>{generateInitials()}</h4>
-      </div>
-      <div className="contact-details">
-        <p>
-          <i className="fas fa-envelope"></i>
-          {generalDetails.email}
-        </p>
-        <p>
-          <i className="fas fa-mobile"></i> {generalDetails.phone}
-        </p>
-        <p>
-          <i className="fas fa-globe"></i>
-          {generalDetails.website}
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function Profile() {
-  const profile = useSelector(selectProfile);
-  return (
-    <section className="profile-section">
-      <h2>PROFILE</h2>
-      <hr></hr>
-      <p>{profile}</p>
     </section>
   );
 }
@@ -158,49 +129,19 @@ function Experience() {
     </div>
   ));
   return (
-    <section className="experience-section">
+    <section className="typeThree-experience">
       <h2>EXPERIENCE</h2>
-      <hr></hr>
-
       {experienceList}
     </section>
   );
 }
 
 export default function TypeThree() {
-  const template = useSelector(selectTemplate);
-  function FormNavigation() {
-    return (
-      <div className="formNavigation">
-        <Link
-          to="/resumeform/skills"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <button>BACK</button>
-        </Link>
-
-        <button className="next">DOWNLOAD</button>
-      </div>
-    );
-  }
-
   return (
     <div className="resume">
-      <div className="left">
-        <Address />
-        <Name name={"name"} title="Fullstack developer" />
-        <Education />
-        <Skills />
-        <Certifications />
-      </div>
-
-      <div className="right">
-        <Contact />
-        <Profile />
-        <Experience />
-      </div>
+      <Top />
+      <Middle />
+      <Bottom />
     </div>
   );
 }

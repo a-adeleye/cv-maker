@@ -1,8 +1,7 @@
 import React from "react";
 import "../../styles/TypeOne.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
-  selectTemplate,
   selectProfile,
   selectEducation,
   selectSkills,
@@ -11,7 +10,6 @@ import {
   selectGeneralDetails,
 } from "../../resumeSlice";
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
 
 // LEFT SECTION
 
@@ -168,22 +166,22 @@ function Experience() {
 }
 
 export default function TypeOne() {
-  const template = useSelector(selectTemplate);
-
   return (
     <div className="resume">
-      <div className="left">
-        <Address />
-        <Name name={"name"} title="Fullstack developer" />
-        <Education />
-        <Skills />
-        <Certifications />
-      </div>
+      <div className="container">
+        <div className="left">
+          <Address />
+          <Name name={"name"} title="Fullstack developer" />
+          <Education />
+          <Skills />
+          <Certifications />
+        </div>
 
-      <div className="right">
-        <Contact />
-        <Profile />
-        <Experience />
+        <div className="right">
+          <Contact />
+          <Profile />
+          <Experience />
+        </div>
       </div>
     </div>
   );
