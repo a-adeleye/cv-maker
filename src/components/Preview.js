@@ -1,14 +1,27 @@
 import React from "react";
 import "../styles/TypeOne.css";
 import { useSelector, useDispatch } from "react-redux";
+import { updateStorage } from "./localstorage";
 import TypeOne from "./Templates/TypeOne";
 import TypeTwo from "./Templates/TypeTwo";
 import TypeThree from "./Templates/TypeThree";
 import { Link } from "react-router-dom";
-import { selectTemplate } from "../resumeSlice";
+import { chooseTemplate, selectTemplate } from "../resumeSlice";
 
 export default function Preview() {
   const template = useSelector(selectTemplate);
+  const dispatch = useDispatch();
+
+  function setActive(e) {
+    const {name } = e.target;
+    dispatch(chooseTemplate(name));
+  }
+
+  React.useEffect(() => {
+    let savedData = JSON.parse(localStorage.getItem("resumeState"));
+    let newData = {...savedData, template: template}
+    updateStorage(newData)
+  },[template])
 
   function FormNavigation() {
     return (
@@ -27,26 +40,19 @@ export default function Preview() {
     );
   }
 
-  const style = {
-    height: "3em",
-    fontSize: "0.8em",
-    padding: "1em 2em",
-    width: "11em",
-  };
-
   return (
     <div className="preview">
       <div className="previewNavigation">
         <p>Change template</p>
         <div className="buttons">
           {template !== "typeOne" && (
-            <button className="secondary-button">Template One</button>
+            <button className="secondary-button" name="typeOne" onClick={setActive}>Template One</button>
           )}
           {template !== "typeTwo" && (
-            <button className="secondary-button">Template Two</button>
+            <button className="secondary-button" name="typeTwo" onClick={setActive}>Template Two</button>
           )}
           {template !== "typeThree" && (
-            <button className="secondary-button">Template Three</button>
+            <button className="secondary-button" name="typeThree" onClick={setActive}>Template Three</button>
           )}
         </div>
       </div>
