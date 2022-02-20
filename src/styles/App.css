@@ -8,8 +8,31 @@ html {
   min-height: 100vh;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 .layout {
   display: flex;
+}
+
+header {
+  height: 12vh;
+  width: 100%;
+  background-color: #09203f;
+  padding: 1em 2em;
+  display: none;
+}
+
+header i {
+  font-size: 2em;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+header i:active {
+  transform: scale(0.97);
 }
 
 main,
@@ -391,6 +414,10 @@ ul {
 @media only screen and (max-width: 795px) {
   .sidebar {
     display: none;
+  }
+
+  header {
+    display: block;
   }
 
   .landing-page {
