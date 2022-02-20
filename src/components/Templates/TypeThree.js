@@ -6,6 +6,7 @@ import {
   selectEducation,
   selectSkills,
   selectExperience,
+  selectCertification,
   selectGeneralDetails,
 } from "../../resumeSlice";
 import { nanoid } from "nanoid";
@@ -72,10 +73,10 @@ function Bottom() {
       <div className="t3-left">
         <Education />
         <Skills />
+        <Certifications />
       </div>
       <div className="t3-right">
         <Experience />
-        
       </div>
     </div>
   );
@@ -135,6 +136,25 @@ function Experience() {
     <section className="t3-experience">
       <h2>EXPERIENCE</h2>
       {experienceList}
+    </section>
+  );
+}
+
+function Certifications() {
+  const certifications = useSelector(selectCertification);
+  const certificationList = certifications.map((certification) => (
+    <div className="certification-details" key={nanoid()}>
+      <h5 className="certification-name">{certification.name}</h5>
+      <p className="certification-year">
+        {certification.achievedYear} {certification.expirationYear && "-"}{" "}
+        {certification.expirationYear}
+      </p>
+    </div>
+  ));
+  return (
+    <section className="certifications-section">
+      <h2>CERTIFICATIONS</h2>
+      {certificationList}
     </section>
   );
 }
