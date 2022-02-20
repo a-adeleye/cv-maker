@@ -81,8 +81,6 @@ main {
   justify-content: space-around;
   color: #ffffff;
   background-size: cover;
-  padding: 5em;
-  gap: 2em;
   background-color: #0093e9;
   background-image: linear-gradient(41deg, #09203f 0%, #0093e9 100%);
 }
@@ -394,6 +392,7 @@ ul {
   .sidebar {
     display: none;
   }
+
   .landing-page {
     height: 100vh;
     text-align: center;
@@ -427,14 +426,6 @@ ul {
     justify-content: center;
   }
 
-  .template {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-  }
-
   .general-details fieldset,
   .educationInputs {
     grid-template-columns: 1fr;
@@ -450,9 +441,9 @@ ul {
     justify-content: center;
   }
 
-  /* .preview {
+  .preview {
     transform: scale(0.6);
-  } */
+  }
 }
 
 /* 320px — 480px: Mobile devices

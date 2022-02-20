@@ -24,8 +24,8 @@ export default function Preview() {
     html2canvas(document.querySelector(".resume")).then(function(canvas) {
       document.body.appendChild(canvas);
   });
-  }*/
-
+  }
+*/
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
     let newData = { ...savedData, template: template };

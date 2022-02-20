@@ -27,9 +27,9 @@ export default function Skills() {
 
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
-    let newData = {...savedData, skills: skills}
-    updateStorage(newData)
-  },[skills])
+    let newData = { ...savedData, skills: skills };
+    updateStorage(newData);
+  }, [skills]);
 
   function deleteSkill(e) {
     dispatch(deleteSkills(e.target.id));
@@ -53,23 +53,36 @@ export default function Skills() {
           <button>BACK</button>
         </Link>
 
-        <Link
-          to="/resumeform/certifications"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <button className="next">NEXT</button>
-        </Link>
+        {validate() && (
+          <Link
+            to="/resumeform/certifications"
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <button className="next">NEXT</button>
+          </Link>
+        )}
+        {!validate() && <button className="next">NEXT</button>}
       </div>
     );
+  }
+
+  function validate() {
+    if (skills.length) {
+      return true;
+    }
+    if (!tempSkills.text) {
+      return false;
+    }
+    return true;
   }
 
   const skillList = skills.map((skill) => (
     <li key={nanoid()} id={skill.id} className="list-item">
       {skill.text}
-      <span id={skill.id} onClick={deleteSkill}>
-        <i className="fas fa-trash"></i>
+      <span>
+        <i className="fas fa-trash" id={skill.id} onClick={deleteSkill}></i>
       </span>
     </li>
   ));
@@ -86,9 +99,7 @@ export default function Skills() {
             onChange={handleChange}
           ></input>
         </label>
-        <ul>
-          {skillList}
-        </ul>
+        <ul>{skillList}</ul>
         <button className="addInputButton" onClick={() => addSkill()}>
           <i className="fas fa-plus"></i> add skill
         </button>

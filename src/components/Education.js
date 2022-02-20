@@ -3,84 +3,90 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateStorage } from "./localstorage";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
-import { selectEducation, addEducations, saveEditedEducation, deleteEducations} from "../resumeSlice";
+import {
+  selectEducation,
+  addEducations,
+  saveEditedEducation,
+  deleteEducations,
+} from "../resumeSlice";
 
 function EducationInputs(props) {
   const { handleChange, formData, addEducation } = props;
 
   function generateArrayOfYears() {
-    var max = new Date().getFullYear()
+    var max = new Date().getFullYear();
     var min = max - 50;
-    var years = []
-  
+    var years = [];
+
     for (var i = max; i >= min; i--) {
-      years.push(i)
+      years.push(i);
     }
-    return years
+    return years;
   }
 
   const years = generateArrayOfYears();
 
   return (
-    
-      <fieldset className="one-column">
-        <legend>EDUCATION</legend>
+    <fieldset className="one-column">
+      <legend>EDUCATION</legend>
 
+      <label>
+        Institution
+        <input
+          name="institution"
+          type="text"
+          value={formData.institution}
+          onChange={handleChange}
+          placeholder="Havard"
+        ></input>
+      </label>
+      <label>
+        Course
+        <input
+          name="course"
+          type="text"
+          value={formData.course}
+          onChange={handleChange}
+          placeholder="Computer Engineering"
+        ></input>
+      </label>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.5em",
+          flexBasis: "45%",
+        }}
+      >
         <label>
-          Institution
-          <input
-            name="institution"
-            type="text"
-            value={formData.institution}
+          Graduation Year
+          <select
+            name="graduationYear"
+            value={formData.graduationYear}
             onChange={handleChange}
-            placeholder="Havard"
+          ><option>...select</option>
+            {years.map((year) => (
+              <option key={nanoid()}>{year}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Still enrolled
+          <input
+            name="graduationYear"
+            type="checkbox"
+            value={formData.cs}
+            onChange={handleChange}
           ></input>
         </label>
-        <label>
-          Course
-          <input
-            name="course"
-            type="text"
-            value={formData.course}
-            onChange={handleChange}
-            placeholder="Computer Engineering"
-          ></input>
-        </label>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.5em",
-            flexBasis: "45%",
-          }}
-        >
-          <label>
-            Graduation Year
-            <select
-              name="graduationYear"
-              value={formData.graduationYear}
-              onChange={handleChange}
-            >
-             { years.map(year => <option key={nanoid()}>{year}</option>)}
-            </select>
-          </label>
-          <label>
-            Still enrolled
-            <input
-              name="graduationYear"
-              type="checkbox"
-              value={formData.cs}
-              onChange={handleChange}
-            ></input>
-          </label>
-        </div>
-        <label>
-          &nbsp;
-          <button className="addInputButton" onClick={addEducation}>
-            <i className="fas fa-plus"></i> add another education
-          </button>
-        </label>
-      </fieldset>
+      </div>
+      <label>
+        &nbsp;
+        <button className="addInputButton" onClick={addEducation}>
+          <i className="fas fa-plus"></i> add another education
+        </button>
+      </label>
+    </fieldset>
   );
 }
 
@@ -101,12 +107,12 @@ export default function Education() {
 
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
-    let newData = {...savedData, education: education}
-    updateStorage(newData)
-  },[education])
+    let newData = { ...savedData, education: education };
+    updateStorage(newData);
+  }, [education]);
 
   function deleteEducation(e) {
-    dispatch(deleteEducations(e.target.id))
+    dispatch(deleteEducations(e.target.id));
   }
 
   function toggleEditing() {
@@ -142,7 +148,7 @@ export default function Education() {
   }
 
   function validate() {
-    if(education.length){
+    if (education.length) {
       return true;
     }
     if (
@@ -156,14 +162,14 @@ export default function Education() {
   }
 
   function saveEdit() {
-  dispatch(saveEditedEducation(formData))
+    dispatch(saveEditedEducation(formData));
     reset();
     toggleEditing();
   }
 
   function addEducation() {
     if (validate()) {
-      dispatch(addEducations(formData))
+      dispatch(addEducations(formData));
       reset();
     }
   }
@@ -182,21 +188,16 @@ export default function Education() {
   }
 
   function EducationNavigation() {
-
     return (
       <div className="formNavigation">
         <Link to="/resumeform/profile" style={{ textDecoration: "none" }}>
           <button>BACK</button>
         </Link>
+        {!validate() && <button className="next">NEXT</button>}
         {validate() && (
           <button className="next" onClick={previewEducation}>
             NEXT
           </button>
-        )}
-        {!validate() && (
-          <Link to="/resumeform/experience" style={{ textDecoration: "none" }}>
-            <button className="next">NEXT</button>
-          </Link>
         )}
       </div>
     );
@@ -214,14 +215,14 @@ export default function Education() {
   }
 
   function previewEducation() {
-    if(validate() && !formData.institution){
+    if (validate() && !formData.institution) {
       setPreview((prev) => (prev = !prev));
       return;
     }
     if (validate()) {
       editingOn ? saveEdit() : addEducation();
+      setPreview((prev) => (prev = !prev));
     }
-    setPreview((prev) => (prev = !prev));
   }
 
   function EducationPreview(props) {
@@ -283,9 +284,7 @@ export default function Education() {
         ></EducationInputs>
       )}
       {preview && educationItems}
-      {!preview && (
-        <EducationNavigation />
-      )}
+      {!preview && <EducationNavigation validate={validate} />}
       {preview && <PreviewNavigation />}
     </div>
   );

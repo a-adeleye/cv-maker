@@ -3,84 +3,92 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateStorage } from "./localstorage";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
-import { selectCertification, addCertifications, saveEditedCertification, deleteCertifications} from "../resumeSlice";
+import {
+  selectCertification,
+  addCertifications,
+  saveEditedCertification,
+  deleteCertifications,
+} from "../resumeSlice";
 
 function CertificationInputs(props) {
   const { handleChange, formData, addCertification } = props;
 
   function generateArrayOfYears() {
-    var max = new Date().getFullYear()
+    var max = new Date().getFullYear();
     var min = max - 50;
-    var years = []
-  
+    var years = [];
+
     for (var i = max; i >= min; i--) {
-      years.push(i)
+      years.push(i);
     }
-    return years
+    return years;
   }
 
   const years = generateArrayOfYears();
 
   return (
-    
-      <fieldset className="one-column">
-        <legend>CERTIFICATIONS</legend>
+    <fieldset className="one-column">
+      <legend>CERTIFICATIONS</legend>
 
+      <label>
+        Name
+        <input
+          name="name"
+          type="text"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="AWS Cloud Practitioner"
+        ></input>
+      </label>
+      <label>
+        Year achieved
+        <select
+          name="achievedYear"
+          value={formData.achievedYear}
+          onChange={handleChange}
+        ><option>...select</option>
+          {years.map((year) => (
+            <option key={nanoid()}>{year}</option>
+          ))}
+        </select>
+      </label>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.5em",
+          flexBasis: "45%",
+        }}
+      >
         <label>
-          Name
-          <input
-            name="name"
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="AWS Cloud Practitioner"
-          ></input>
-        </label>
-        <label>
-          Year achieved
+          Expiration year
           <select
-            name="achievedYear"
-            value={formData.achievedYear}
+            name="expirationYear"
+            value={formData.expirationYear}
             onChange={handleChange}
-          >
-            { years.map(year => <option key={nanoid()}>{year}</option>)}
+          ><option>...select</option>
+            {years.map((year) => (
+              <option key={nanoid()}>{year}</option>
+            ))}
           </select>
         </label>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.5em",
-            flexBasis: "45%",
-          }}
-        >
-          <label>
-            Expiration year
-            <select
-              name="expirationYear"
-              value={formData.expirationYear}
-              onChange={handleChange}
-            >
-              { years.map(year => <option key={nanoid()}>{year}</option>)}
-            </select>
-          </label>
-          <label>
-            Does not expire
-            <input
-              name="expirationYear"
-              type="checkbox"
-              value={formData.exp}
-              onChange={handleChange}
-            ></input>
-          </label>
-        </div>
         <label>
-          &nbsp;
-          <button className="addInputButton" onClick={addCertification}>
-            <i className="fas fa-plus"></i> add another certification
-          </button>
+          Does not expire
+          <input
+            name="expirationYear"
+            type="checkbox"
+            value={formData.exp}
+            onChange={handleChange}
+          ></input>
         </label>
-      </fieldset>
+      </div>
+      <label>
+        &nbsp;
+        <button className="addInputButton" onClick={addCertification}>
+          <i className="fas fa-plus"></i> add another certification
+        </button>
+      </label>
+    </fieldset>
   );
 }
 
@@ -101,12 +109,12 @@ export default function Certification() {
 
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
-    let newData = {...savedData, certifications: certifications}
-    updateStorage(newData)
-  },[certifications])
+    let newData = { ...savedData, certifications: certifications };
+    updateStorage(newData);
+  }, [certifications]);
 
   function deleteCertification(e) {
-    dispatch(deleteCertifications(e.target.id))
+    dispatch(deleteCertifications(e.target.id));
   }
 
   function toggleEditing() {
@@ -142,27 +150,24 @@ export default function Certification() {
   }
 
   function validate() {
-    if(certifications.length){
+    if (certifications.length) {
       return true;
     }
-    if (
-      formData.name === "" ||
-      formData.achievedYear === ""
-    ) {
+    if (formData.name === "" || formData.achievedYear === "") {
       return false;
     }
     return true;
   }
 
   function saveEdit() {
-  dispatch(saveEditedCertification(formData))
+    dispatch(saveEditedCertification(formData));
     reset();
     toggleEditing();
   }
 
   function addCertification() {
     if (validate()) {
-      dispatch(addCertifications(formData))
+      dispatch(addCertifications(formData));
       reset();
     }
   }
@@ -181,7 +186,6 @@ export default function Certification() {
   }
 
   function CertificationNavigation() {
-
     return (
       <div className="formNavigation">
         <Link to="/resumeform/skill" style={{ textDecoration: "none" }}>
@@ -192,11 +196,7 @@ export default function Certification() {
             NEXT
           </button>
         )}
-        {!validate() && (
-          <Link to="/resumeform/preview" style={{ textDecoration: "none" }}>
-            <button className="next">NEXT</button>
-          </Link>
-        )}
+        {!validate() && <button className="next">NEXT</button>}
       </div>
     );
   }
@@ -213,7 +213,7 @@ export default function Certification() {
   }
 
   function previewCertification() {
-    if(validate() && !formData.name){
+    if (validate() && !formData.name) {
       setPreview((prev) => (prev = !prev));
       return;
     }
@@ -224,7 +224,7 @@ export default function Certification() {
   }
 
   function CertificationPreview(props) {
-    const { name,achievedYear, expirationYear, id, number } = props;
+    const { name, achievedYear, expirationYear, id, number } = props;
 
     return (
       <div className="three-columns">
@@ -282,9 +282,7 @@ export default function Certification() {
         ></CertificationInputs>
       )}
       {preview && certificationItems}
-      {!preview && (
-        <CertificationNavigation />
-      )}
+      {!preview && <CertificationNavigation />}
       {preview && <PreviewNavigation />}
     </div>
   );

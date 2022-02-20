@@ -146,7 +146,7 @@ export default function Experience() {
   }
 
   function addExperience() {
-    if (validate()) {
+    if (validate() && formData.role !== "") {
       dispatch(addExperiences(formData));
       resetFormData();
     }
@@ -183,6 +183,9 @@ export default function Experience() {
 
   function validate() {
     const { role, company, fromDate, toDate } = formData;
+    if(experience.length){
+      return true;
+    }
     if (role === "" || company === "" || fromDate === "" || toDate === "") {
       return false;
     }
@@ -272,54 +275,53 @@ export default function Experience() {
   }
 
   function formatDate(date) {
-    if(date === 'present'){
+    if (date === "present") {
       return date;
     }
     const dateObj = new Date(date);
     const monthNumber = dateObj.getUTCMonth() + 1;
     const year = dateObj.getUTCFullYear();
     let month;
-    switch(monthNumber){
+    switch (monthNumber) {
       case 1:
-        month = 'JAN';
+        month = "JAN";
         break;
       case 2:
-        month = 'FEB';
+        month = "FEB";
         break;
       case 3:
-        month = 'MAR';
+        month = "MAR";
         break;
       case 4:
-        month = 'APR';
+        month = "APR";
         break;
       case 5:
-        month = 'MAY';
+        month = "MAY";
         break;
       case 6:
-        month = 'JUN';
+        month = "JUN";
         break;
       case 7:
-        month = 'JUL';
+        month = "JUL";
       case 8:
-        month = 'AUG';
+        month = "AUG";
         break;
       case 9:
-        month = 'SEP';
+        month = "SEP";
         break;
       case 10:
-        month = 'OCT';
+        month = "OCT";
         break;
       case 11:
-        month = 'SEP';
+        month = "SEP";
         break;
       case 12:
-        month = 'DEC';
+        month = "DEC";
         break;
       default:
-        month = 'MON';
-
+        month = "MON";
     }
-    return `${month} ${year}`
+    return `${month} ${year}`;
   }
 
   const experienceList = experience.map((exp, index) => (
@@ -354,17 +356,13 @@ export default function Experience() {
           <button>BACK</button>
         </Link>
 
-        {validate && (
+        {validate() && (
           <button className="next" onClick={previewExperience}>
             NEXT
           </button>
         )}
 
-        {!validate && (
-          <Link to="/resumeform/skill" style={{ textDecoration: "none" }}>
-            <button className="next">NEXT</button>
-          </Link>
-        )}
+        {!validate() && <button className="next">NEXT</button>}
       </div>
     );
   }
@@ -386,8 +384,6 @@ export default function Experience() {
     }
     setPreview((prev) => (prev = !prev));
   }
-
-  
 
   return (
     <section className="experience">
