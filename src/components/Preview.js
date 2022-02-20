@@ -27,7 +27,7 @@ export default function Preview() {
     return (
       <div className="formNavigation">
         <Link
-          to="/resumeform/skills"
+          to="/resumeform/skill"
           style={{
             textDecoration: "none",
           }}
