@@ -352,7 +352,7 @@ export default function Experience() {
   function ExperienceNavigation() {
     return (
       <div className="formNavigation">
-        <Link to="/resumeform/education" style={{ textDecoration: "none" }}>
+        <Link to="/cv-maker/resumeform/education" style={{ textDecoration: "none" }}>
           <button>BACK</button>
         </Link>
 
@@ -371,7 +371,7 @@ export default function Experience() {
     return (
       <div className="formNavigation">
         <button onClick={previewExperience}>BACK</button>
-        <Link to="/resumeform/skill" style={{ textDecoration: "none" }}>
+        <Link to="/cv-maker/resumeform/skill" style={{ textDecoration: "none" }}>
           <button className="next">NEXT</button>
         </Link>
       </div>

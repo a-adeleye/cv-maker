@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function SideBar() {
   return (
     <section className="sidebar">
-      <NavLink to="/templates" className="link">
+      <NavLink to="/cv-maker/templates" className="link">
         Template
       </NavLink>
       <NavLink to="generaldetails" className="link">

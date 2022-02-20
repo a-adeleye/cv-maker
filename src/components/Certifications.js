@@ -188,7 +188,7 @@ export default function Certification() {
   function CertificationNavigation() {
     return (
       <div className="formNavigation">
-        <Link to="/resumeform/skill" style={{ textDecoration: "none" }}>
+        <Link to="/cv-maker/resumeform/skill" style={{ textDecoration: "none" }}>
           <button>BACK</button>
         </Link>
         {validate() && (
@@ -205,7 +205,7 @@ export default function Certification() {
     return (
       <div className="formNavigation">
         <button onClick={previewCertification}>BACK</button>
-        <Link to="/resumeform/preview" style={{ textDecoration: "none" }}>
+        <Link to="/cv-maker/resumeform/preview" style={{ textDecoration: "none" }}>
           <button className="next">NEXT</button>
         </Link>
       </div>

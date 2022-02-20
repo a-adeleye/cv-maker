@@ -12,7 +12,7 @@ function FormNavigation() {
   return (
     <div className="formNavigation">
       <Link
-        to="/"
+        to="/cv-maker"
         style={{
           textDecoration: "none",
         }}
@@ -23,7 +23,7 @@ function FormNavigation() {
         <button className="next">NEXT</button>
       }
       {template && <Link
-        to="/resumeform/generaldetails"
+        to="/cv-maker/resumeform/generaldetails"
         style={{
           textDecoration: "none",
         }}

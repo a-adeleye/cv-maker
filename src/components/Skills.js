@@ -45,7 +45,7 @@ export default function Skills() {
     return (
       <div className="formNavigation">
         <Link
-          to="/resumeform/experience"
+          to="/cv-maker/resumeform/experience"
           style={{
             textDecoration: "none",
           }}
@@ -55,7 +55,7 @@ export default function Skills() {
 
         {validate() && (
           <Link
-            to="/resumeform/certifications"
+            to="/cv-maker/resumeform/certifications"
             style={{
               textDecoration: "none",
             }}

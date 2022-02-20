@@ -15,8 +15,8 @@ function App() {
       <Routes>
        
         <Route path="/cv-maker" element={<Landing />}></Route>
-        <Route path="/templates" element={<Templates />}></Route>
-        <Route path="/resumeform/*" element={<Layout />}></Route>
+        <Route path="/cv-maker/templates" element={<Templates />}></Route>
+        <Route path="/cv-maker/resumeform/*" element={<Layout />}></Route>
         
       </Routes>
       </div>

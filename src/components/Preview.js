@@ -54,7 +54,7 @@ export default function Preview() {
     return (
       <div className="formNavigation">
         <Link
-          to="/resumeform/skill"
+          to="/cv-maker/resumeform/skill"
           style={{
             textDecoration: "none",
           }}

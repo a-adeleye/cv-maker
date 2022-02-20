@@ -32,7 +32,7 @@ export default function Profile() {
     return (
       <div className="formNavigation">
         <Link
-          to="/resumeform/generaldetails"
+          to="/cv-maker/resumeform/generaldetails"
           style={{ textDecoration: "none" }}
         >
           <button>BACK</button>
@@ -45,7 +45,7 @@ export default function Profile() {
         )}
 
         {props.validate() && (
-          <Link to="/resumeform/education" style={{ textDecoration: "none" }}>
+          <Link to="/cv-maker/resumeform/education" style={{ textDecoration: "none" }}>
             <button className="next" onClick={add}>
               NEXT
             </button>

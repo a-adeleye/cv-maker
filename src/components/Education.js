@@ -190,7 +190,7 @@ export default function Education() {
   function EducationNavigation() {
     return (
       <div className="formNavigation">
-        <Link to="/resumeform/profile" style={{ textDecoration: "none" }}>
+        <Link to="/cv-maker/resumeform/profile" style={{ textDecoration: "none" }}>
           <button>BACK</button>
         </Link>
         {!validate() && <button className="next">NEXT</button>}
@@ -207,7 +207,7 @@ export default function Education() {
     return (
       <div className="formNavigation">
         <button onClick={previewEducation}>BACK</button>
-        <Link to="/resumeform/experience" style={{ textDecoration: "none" }}>
+        <Link to="/cv-maker/resumeform/experience" style={{ textDecoration: "none" }}>
           <button className="next">NEXT</button>
         </Link>
       </div>

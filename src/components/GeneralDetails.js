@@ -87,7 +87,7 @@ function FormNavigation(props) {
   return (
     <div className="formNavigation">
       <Link
-        to="/templates"
+        to="/cv-maker/templates"
         style={{
           textDecoration: "none",
         }}
@@ -97,7 +97,7 @@ function FormNavigation(props) {
 
       {props.validate() && (
         <Link
-          to="/resumeform/profile"
+          to="/cv-maker/resumeform/profile"
           style={{
             textDecoration: "none",
           }}
