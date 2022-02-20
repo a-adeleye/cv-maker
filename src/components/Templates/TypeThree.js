@@ -126,12 +126,65 @@ function Skills() {
 
 function Experience() {
   const experience = useSelector(selectExperience);
+  
+  function formatDate(date) {
+    if(date === 'present'){
+      return date;
+    }
+    const dateObj = new Date(date);
+    const monthNumber = dateObj.getUTCMonth() + 1;
+    const year = dateObj.getUTCFullYear();
+    let month;
+    switch(monthNumber){
+      case 1:
+        month = 'JAN';
+        break;
+      case 2:
+        month = 'FEB';
+        break;
+      case 3:
+        month = 'MAR';
+        break;
+      case 4:
+        month = 'APR';
+        break;
+      case 5:
+        month = 'MAY';
+        break;
+      case 6:
+        month = 'JUN';
+        break;
+      case 7:
+        month = 'JUL';
+      case 8:
+        month = 'AUG';
+        break;
+      case 9:
+        month = 'SEP';
+        break;
+      case 10:
+        month = 'OCT';
+        break;
+      case 11:
+        month = 'SEP';
+        break;
+      case 12:
+        month = 'DEC';
+        break;
+      default:
+        month = 'MON';
+
+    }
+    return `${month} ${year}`
+  }
+
+
   const experienceList = experience.map((exp) => (
     <div key={nanoid()}>
       <h4 className="t3-role">{exp.role}</h4>
       <h4 className="t3-company">{exp.company} </h4>
       <span>
-       {" "} | <strong>{exp.fromDate}</strong> to <strong>{exp.toDate}</strong>
+       {" "} | <strong>{formatDate(exp.fromDate)}</strong> to <strong>{formatDate(exp.toDate)}</strong>
       </span>
 
       <ul className="t3-list">

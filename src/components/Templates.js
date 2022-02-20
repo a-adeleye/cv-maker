@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateStorage } from "./localstorage";
 import { Link } from "react-router-dom";
-import typeOne from "../t1.jpg";
-import typeTwo from "../t2.jpg";
-import typeThree from "../t3.jpg";
+import typeOne from "../t1.png";
+import typeTwo from "../t2.png";
+import typeThree from "../t3.png";
 import { chooseTemplate, selectTemplate } from "../resumeSlice";
 
 function FormNavigation() {
