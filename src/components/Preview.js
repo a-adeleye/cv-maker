@@ -166,9 +166,6 @@ function Experience() {
 
 export default function Preview() {
   const template = useSelector(selectTemplate);
-
-  console.log(template);
-
   function FormNavigation() {
     return (
       <div className="formNavigation">

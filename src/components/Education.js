@@ -88,7 +88,6 @@ export default function Education() {
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
     let newData = {...savedData, education: education}
-    console.log(newData)
     updateStorage(newData)
   },[education])
 
