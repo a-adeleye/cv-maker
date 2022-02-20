@@ -8,6 +8,19 @@ import { selectCertification, addCertifications, saveEditedCertification, delete
 function CertificationInputs(props) {
   const { handleChange, formData, addCertification } = props;
 
+  function generateArrayOfYears() {
+    var max = new Date().getFullYear()
+    var min = max - 50;
+    var years = []
+  
+    for (var i = max; i >= min; i--) {
+      years.push(i)
+    }
+    return years
+  }
+
+  const years = generateArrayOfYears();
+
   return (
     
       <fieldset className="one-column">
@@ -25,13 +38,13 @@ function CertificationInputs(props) {
         </label>
         <label>
           Year achieved
-          <input
+          <select
             name="achievedYear"
-            type="text"
             value={formData.achievedYear}
             onChange={handleChange}
-            placeholder="2022"
-          ></input>
+          >
+            { years.map(year => <option key={nanoid()}>{year}</option>)}
+          </select>
         </label>
         <div
           style={{
@@ -43,13 +56,13 @@ function CertificationInputs(props) {
         >
           <label>
             Expiration year
-            <input
+            <select
               name="expirationYear"
-              type="date"
-              placeholder="2025"
               value={formData.expirationYear}
               onChange={handleChange}
-            ></input>
+            >
+              { years.map(year => <option key={nanoid()}>{year}</option>)}
+            </select>
           </label>
           <label>
             Does not expire

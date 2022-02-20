@@ -124,9 +124,9 @@ export default function Experience() {
 
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
-    let newData = {...savedData, experience: experience}
-    updateStorage(newData)
-  },[experience])
+    let newData = { ...savedData, experience: experience };
+    updateStorage(newData);
+  }, [experience]);
 
   const [editingOn, setEditingOn] = React.useState(false);
 
@@ -271,14 +271,65 @@ export default function Experience() {
     );
   }
 
+  function formatDate(date) {
+    if(date === 'present'){
+      return date;
+    }
+    const dateObj = new Date(date);
+    const monthNumber = dateObj.getUTCMonth() + 1;
+    const year = dateObj.getUTCFullYear();
+    let month;
+    switch(monthNumber){
+      case 1:
+        month = 'JAN';
+        break;
+      case 2:
+        month = 'FEB';
+        break;
+      case 3:
+        month = 'MAR';
+        break;
+      case 4:
+        month = 'APR';
+        break;
+      case 5:
+        month = 'MAY';
+        break;
+      case 6:
+        month = 'JUN';
+        break;
+      case 7:
+        month = 'JUL';
+      case 8:
+        month = 'AUG';
+        break;
+      case 9:
+        month = 'SEP';
+        break;
+      case 10:
+        month = 'OCT';
+        break;
+      case 11:
+        month = 'SEP';
+        break;
+      case 12:
+        month = 'DEC';
+        break;
+      default:
+        month = 'MON';
+
+    }
+    return `${month} ${year}`
+  }
+
   const experienceList = experience.map((exp, index) => (
     <PreviewExperience
       key={nanoid()}
       id={exp.id}
       role={exp.role}
       company={exp.company}
-      from={exp.fromDate}
-      to={exp.toDate}
+      from={formatDate(exp.fromDate)}
+      to={formatDate(exp.toDate)}
       responsibilities={exp.responsibilities}
       number={index + 1}
     />
@@ -335,6 +386,8 @@ export default function Experience() {
     }
     setPreview((prev) => (prev = !prev));
   }
+
+  
 
   return (
     <section className="experience">

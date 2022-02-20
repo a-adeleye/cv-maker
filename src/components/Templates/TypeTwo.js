@@ -60,7 +60,6 @@ function Profile() {
 }
 
 function Bottom() {
-  const generalDetails = useSelector(selectGeneralDetails);
   return (
     <div className="t2-bottom">
       <Left />

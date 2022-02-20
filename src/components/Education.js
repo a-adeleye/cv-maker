@@ -8,6 +8,19 @@ import { selectEducation, addEducations, saveEditedEducation, deleteEducations} 
 function EducationInputs(props) {
   const { handleChange, formData, addEducation } = props;
 
+  function generateArrayOfYears() {
+    var max = new Date().getFullYear()
+    var min = max - 50;
+    var years = []
+  
+    for (var i = max; i >= min; i--) {
+      years.push(i)
+    }
+    return years
+  }
+
+  const years = generateArrayOfYears();
+
   return (
     
       <fieldset className="one-column">
@@ -43,12 +56,13 @@ function EducationInputs(props) {
         >
           <label>
             Graduation Year
-            <input
+            <select
               name="graduationYear"
-              type="date"
               value={formData.graduationYear}
               onChange={handleChange}
-            ></input>
+            >
+             { years.map(year => <option key={nanoid()}>{year}</option>)}
+            </select>
           </label>
           <label>
             Still enrolled

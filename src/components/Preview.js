@@ -20,11 +20,11 @@ export default function Preview() {
     dispatch(chooseTemplate(name));
   }
 
-  function screenshot() {
+  /*function screenshot() {
     html2canvas(document.querySelector(".resume")).then(function(canvas) {
       document.body.appendChild(canvas);
   });
-  }
+  }*/
 
   React.useEffect(() => {
     let savedData = JSON.parse(localStorage.getItem("resumeState"));
@@ -37,15 +37,16 @@ export default function Preview() {
       let resume = document.querySelector(".resume");
       html2canvas(resume).then((canvas) => {
         const myImage = canvas.toDataURL("image/png");
+        let pdf;
   
         if (canvas.width > canvas.height) {
-          var pdf = new jsPDF("l", "pt", [canvas.width - 250, canvas.height - 300], "a4"); //
+          pdf = new jsPDF("l", "pt", [canvas.width - 250, canvas.height - 300], "a4");
         } else {
-          var pdf = new jsPDF("p", "pt", [canvas.height - 300, canvas.width - 250], "a4"); //
+          pdf = new jsPDF("p", "pt", [canvas.height - 300, canvas.width - 250], "a4");
         }
 
         pdf.addImage(myImage, "png", 0, 0); 
-        pdf.save(`${generalDetails.name}.pdf`);
+        pdf.save(`${generalDetails.firstName} ${generalDetails.lastName} resume.pdf`);
         //screenshot();
       });
     }
