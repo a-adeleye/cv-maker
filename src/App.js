@@ -14,7 +14,7 @@ function App() {
        <Header />
       <Routes>
        
-        <Route path="/" element={<Landing />}></Route>
+        <Route path="/cv-maker" element={<Landing />}></Route>
         <Route path="/templates" element={<Templates />}></Route>
         <Route path="/resumeform/*" element={<Layout />}></Route>
         
