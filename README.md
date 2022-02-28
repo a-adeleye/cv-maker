@@ -14,15 +14,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### Allows add, edit and deleted
-### Three templates to choose form
-### Add general details
-### Add experience
-### Add profile summary
-### Add skills
-### Add certifications
-### Preview outcome
-### Download template
+[x] Allows add, edit and deleted
+[x] Three templates to choose form
+[x] Add general details
+[x] Add experience
+[x] Add profile summary
+[x] Add skills
+[x] Add certifications
+[x] Preview outcome
+[x] Download template
 
 <div align="center"><img src="./src/resume-maker.png" alt="app screenshot" width="1000" /></div>
 
